@@ -202,12 +202,12 @@ const Contact = ({ showToast }: ContactProps) => {
                   <div className="w-[24rem] h-[24rem] rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-600/30 flex items-center justify-center">
                     {/* Profile image container */}
                     <div className="w-[20rem] h-[20rem] rounded-full overflow-hidden border-4 border-cyan-400/70 shadow-2xl">
-                      <img 
-                        src="/sriraj1.jpg"
-                        alt="W V P S SRIRAJ"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                  <img 
+                    src="/sriraj1.jpg"
+                    alt="W V P S SRIRAJ"
+                    className="w-full h-full object-cover" // <-- No glow or shadow classes here!
+                  />
+                  </div>
                   </div>
                 </div>
                 {/* Floating elements */}
