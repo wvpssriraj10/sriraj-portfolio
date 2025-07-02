@@ -72,8 +72,8 @@ const Contact = ({ showToast }: ContactProps) => {
 
   const handleResumeDownload = () => {
     const link = document.createElement('a');
-    link.href = '/sriraj resume.pdf';
-    link.download = 'W_V_P_S_SRIRAJ_Resume.pdf';
+    link.href = '/sriraj resume.docx';
+    link.download = 'sriraj resume.docx';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
