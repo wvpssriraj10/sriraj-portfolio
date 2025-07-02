@@ -212,7 +212,7 @@ const Contact = ({ showToast }: ContactProps) => {
                 </div>
                 {/* Floating elements */}
                 <div className="absolute -top-4 -right-4 w-8 h-8 bg-cyan-400 rounded-full animate-bounce delay-100"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-400 rounded-full animate-bounce delay-300"></div>
+                <div className="absolute -bottom-14 -left-4 w-6 h-6 bg-blue-400 rounded-full animate-bounce delay-300"></div>
                 <div className="mt-16 text-2xl font-bold italic text-cyan-300 text-center">Let&apos;s build something amazing together!</div>
               </div>
               {/* Download Resume Button - Centered below image */}
