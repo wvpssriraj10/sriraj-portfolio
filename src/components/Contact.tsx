@@ -37,22 +37,38 @@ const Contact = ({ showToast }: ContactProps) => {
     setIsSubmitting(true);
 
     try {
-      const form = new FormData();
-      form.append('name', formData.name);
-      form.append('email', formData.email);
-      form.append('message', formData.message);
-      form.append('_subject', `New message from ${formData.name}`);
-      form.append('_replyto', formData.email);
-      form.append('_captcha', 'false');
-      form.append('_template', 'table');
+      const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
-      const response = await fetch('https://formsubmit.co/ajax/wsriraj10@gmail.com', {
-        method: 'POST',
-        body: form,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      let response: Response;
+      if (isLocal) {
+        const form = new FormData();
+        form.append('name', formData.name);
+        form.append('email', formData.email);
+        form.append('message', formData.message);
+        form.append('_subject', `New message from ${formData.name}`);
+        form.append('_replyto', formData.email);
+        form.append('_captcha', 'false');
+        form.append('_template', 'table');
+
+        response = await fetch('https://formsubmit.co/ajax/wsriraj10@gmail.com', {
+          method: 'POST',
+          body: form,
+          headers: { 'Accept': 'application/json' }
+        });
+      } else {
+        response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message
+          })
+        });
+      }
 
       if (response.ok) {
         showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
