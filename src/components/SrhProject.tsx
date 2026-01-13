@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 
 interface SrhProjectProps {
   onBack: () => void;
 }
 
-const SrhProject = ({ onBack }: SrhProjectProps) => {
+const SrhProject = memo(({ onBack }: SrhProjectProps) => {
   return (
     <div className="min-h-screen bg-slate-900 text-white relative">
       {/* Background Image */}
@@ -131,6 +131,8 @@ const SrhProject = ({ onBack }: SrhProjectProps) => {
       </div>
     </div>
   );
-};
+});
+
+SrhProject.displayName = 'SrhProject';
 
 export default SrhProject;

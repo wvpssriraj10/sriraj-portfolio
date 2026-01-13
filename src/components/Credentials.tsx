@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback, useMemo } from 'react';
 import { X, ExternalLink } from 'lucide-react';
+import ParallaxCardCarousel from './ui/3d-cards-slider';
 
 interface CredentialsProps {
   showToast: (message: string, type: 'success' | 'error') => void;
@@ -15,7 +16,7 @@ interface Certificate {
   brief?: string;
 }
 
-const Credentials = ({ showToast }: CredentialsProps) => {
+const Credentials = memo(({ showToast }: CredentialsProps) => {
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
 
   const certificates: Certificate[] = [
@@ -111,9 +112,28 @@ const Credentials = ({ showToast }: CredentialsProps) => {
     }
   ];
 
-  const handleCertificateClick = (certificate: Certificate) => {
+  const handleCertificateClick = useCallback((certificate: Certificate) => {
     setSelectedCertificate(certificate);
-  };
+  }, []);
+
+  // Map certificates to carousel card format
+  const carouselCards = useMemo(() => {
+    return certificates.map((cert) => ({
+      id: cert.id,
+      title: cert.title,
+      subtitle: cert.issuer,
+      description: cert.brief || cert.description,
+      imageUrl: cert.imageUrl,
+      actionLabel: cert.linkedinUrl ? 'View on LinkedIn' : 'View Details',
+      onAction: () => {
+        if (cert.linkedinUrl) {
+          window.open(cert.linkedinUrl, '_blank', 'noopener,noreferrer');
+        } else {
+          handleCertificateClick(cert);
+        }
+      }
+    }));
+  }, [certificates, handleCertificateClick]);
 
   return (
     <div className="night-sky-bg">
@@ -127,7 +147,23 @@ const Credentials = ({ showToast }: CredentialsProps) => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 3D Carousel View */}
+          <div className="mb-12">
+            <ParallaxCardCarousel 
+              cards={carouselCards}
+              autoplaySpeed={4000}
+              enableAutoplay={true}
+              cardWidth={340}
+              cardHeight={500}
+              gap={40}
+              perspective={1500}
+              maxRotation={20}
+              backgroundColor="bg-transparent"
+            />
+          </div>
+
+          {/* Grid View (Alternative - can be toggled) */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {certificates.map((certificate) => (
               <div
                 key={certificate.id}
@@ -135,13 +171,13 @@ const Credentials = ({ showToast }: CredentialsProps) => {
                 className="bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:transform hover:scale-105 group"
               >
                 <div className="h-48 overflow-hidden">
-                  <a href="#cricket-portfolio" aria-label="View Cricket Portfolio section">
-                    <img
-                      src={certificate.imageUrl}
-                      alt={certificate.title + ' certificate'}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </a>
+                  <img
+                    src={certificate.imageUrl}
+                    alt={certificate.title + ' certificate'}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div className="p-4">
                   <h3 className="text-white font-semibold text-sm mb-2 line-clamp-2">
@@ -177,6 +213,8 @@ const Credentials = ({ showToast }: CredentialsProps) => {
                       src={selectedCertificate.imageUrl}
                       alt={selectedCertificate.title}
                       className="w-full h-auto rounded-lg border border-slate-600"
+                      loading="eager"
+                      decoding="async"
                     />
                   </div>
 
@@ -212,6 +250,8 @@ const Credentials = ({ showToast }: CredentialsProps) => {
       </section>
     </div>
   );
-};
+});
+
+Credentials.displayName = 'Credentials';
 
 export default Credentials;

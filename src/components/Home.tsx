@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const Home = () => {
+const Home = memo(() => {
   const scrollToNext = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -31,6 +31,8 @@ const Home = () => {
               src="/sriraj.jpg"
               alt="W V P S SRIRAJ"
               className="w-full h-full object-cover relative z-10"
+              loading="eager"
+              decoding="async"
             />
           </div>
         </div>
@@ -64,6 +66,8 @@ const Home = () => {
       </div>
     </div>
   );
-};
+});
+
+Home.displayName = 'Home';
 
 export default Home;

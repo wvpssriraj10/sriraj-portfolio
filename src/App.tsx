@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, useMemo, useCallback } from 'react';
 import { Menu, X, Mail, Linkedin, Github, Instagram, ChevronDown } from 'lucide-react';
+import LoadingSpinner from './components/LoadingSpinner';
 
-// Portfolio Components
-import Home from './components/Home';
-import About from './components/About';
-import Projects from './components/Projects';
-import CricketPortfolio from './components/CricketPortfolio';
-import Credentials from './components/Credentials';
-import Contact from './components/Contact';
-import SrhProject from './components/SrhProject';
+// Portfolio Components - Code splitting with React.lazy()
+const Home = React.lazy(() => import('./components/Home'));
+const About = React.lazy(() => import('./components/About'));
+const Projects = React.lazy(() => import('./components/Projects'));
+const CricketPortfolio = React.lazy(() => import('./components/CricketPortfolio'));
+const Credentials = React.lazy(() => import('./components/Credentials'));
+const Contact = React.lazy(() => import('./components/Contact'));
+const SrhProject = React.lazy(() => import('./components/SrhProject'));
 
-// Toast notification component
-const Toast = ({ message, type, onClose }: { message: string; type: 'success' | 'error'; onClose: () => void }) => (
+// Toast notification component - Memoized for performance
+const Toast = React.memo(({ message, type, onClose }: { message: string; type: 'success' | 'error'; onClose: () => void }) => (
   <div className={`fixed top-20 right-4 z-50 p-4 rounded-lg text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} animate-slide-in`}>
     <div className="flex items-center justify-between">
       <span>{message}</span>
-      <button onClick={onClose} className="ml-4 text-white hover:text-gray-200">
+      <button onClick={onClose} className="ml-4 text-white hover:text-gray-200" aria-label="Close notification">
         <X size={16} />
       </button>
     </div>
   </div>
-);
+));
+
+Toast.displayName = 'Toast';
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home');
@@ -30,26 +33,36 @@ function App() {
   const [showSrhProject, setShowSrhProject] = useState(false);
 
   useEffect(() => {
+    // Throttle scroll handler for better performance
+    let ticking = false;
+    
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      // Update current section based on scroll position
-      const sections = ['home', 'about', 'cricket-portfolio', 'projects', 'certifications', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setCurrentSection(section);
-            break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          
+          // Update current section based on scroll position
+          const sections = ['home', 'about', 'cricket-portfolio', 'projects', 'certifications', 'contact'];
+          const scrollPosition = window.scrollY + 100;
+          
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const { offsetTop, offsetHeight } = element;
+              if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                setCurrentSection(section);
+                break;
+              }
+            }
           }
-        }
+          
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -62,41 +75,49 @@ function App() {
     }
   }, [toast]);
 
-  const showToast = (message: string, type: 'success' | 'error') => {
+  const showToast = useCallback((message: string, type: 'success' | 'error') => {
     setToast({ message, type });
-  };
+  }, []);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
-  };
+  }, []);
 
-  const goToHome = () => {
+  const goToHome = useCallback(() => {
     setShowSrhProject(false);
     scrollToSection('home');
-  };
+  }, [scrollToSection]);
 
-  const socialLinks = [
+  const socialLinks = useMemo(() => [
     { icon: Mail, href: 'mailto:wsriraj10@gmail.com', label: 'Email' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/sriraj-w-v-p-s', label: 'LinkedIn' },
     { icon: Github, href: 'https://github.com/wvpssriraj10', label: 'GitHub' },
     { icon: Instagram, href: 'https://www.instagram.com/w.v.p.s.sriraj_10/', label: 'Instagram' }
-  ];
+  ], []);
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'cricket-portfolio', label: 'Cricket Portfolio' },
     { id: 'projects', label: 'Projects' },
     { id: 'certifications', label: 'Certifications' },
     { id: 'contact', label: 'Contact' }
-  ];
+  ], []);
+
+  const handleSrhProjectBack = useCallback(() => {
+    setShowSrhProject(false);
+  }, []);
 
   if (showSrhProject) {
-    return <SrhProject onBack={() => setShowSrhProject(false)} />;
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <SrhProject onBack={handleSrhProjectBack} />
+      </Suspense>
+    );
   }
 
   return (
@@ -206,31 +227,43 @@ function App() {
       {/* Main Content */}
       <main>
         <section id="home">
-          <Home />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Home />
+          </Suspense>
         </section>
         
         <section id="about">
-          <About />
+          <Suspense fallback={<LoadingSpinner />}>
+            <About />
+          </Suspense>
         </section>
         
         <section id="cricket-portfolio">
-          <CricketPortfolio />
+          <Suspense fallback={<LoadingSpinner />}>
+            <CricketPortfolio />
+          </Suspense>
         </section>
         
         <section id="projects">
-          <Projects onProjectClick={(project) => {
-            if (project === 'srh') {
-              setShowSrhProject(true);
-            }
-          }} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Projects onProjectClick={(project) => {
+              if (project === 'srh') {
+                setShowSrhProject(true);
+              }
+            }} />
+          </Suspense>
         </section>
         
         <section id="certifications">
-          <Credentials showToast={showToast} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Credentials showToast={showToast} />
+          </Suspense>
         </section>
         
         <section id="contact">
-          <Contact showToast={showToast} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Contact showToast={showToast} />
+          </Suspense>
         </section>
       </main>
 

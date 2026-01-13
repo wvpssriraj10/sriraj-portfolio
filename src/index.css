@@ -26,6 +26,13 @@
   overflow: hidden;
 }
 
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -170,4 +177,30 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
+  /* Optimize background rendering */
+  will-change: background-image;
+  /* Use GPU acceleration for smoother scrolling */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* Prevent layout shift */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize animations with will-change */
+.animate-pulse,
+.animate-bounce,
+.animate-spin {
+  will-change: transform, opacity;
+}
+
+/* Reduce repaints on scroll */
+nav {
+  will-change: background-color, backdrop-filter;
 }

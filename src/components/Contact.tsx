@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { Mail, Linkedin, Github, Instagram, Download } from 'lucide-react';
 
 interface ContactProps {
   showToast: (message: string, type: 'success' | 'error') => void;
 }
 
-const Contact = ({ showToast }: ContactProps) => {
+const Contact = memo(({ showToast }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,7 +15,7 @@ const Contact = ({ showToast }: ContactProps) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (formData.honeypot !== '') {
@@ -102,16 +102,16 @@ const Contact = ({ showToast }: ContactProps) => {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData, showToast]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-    });
-  };
+    }));
+  }, []);
 
-  const handleResumeDownload = () => {
+  const handleResumeDownload = useCallback(() => {
     const exportDocxUrl = 'https://docs.google.com/document/d/1LX9UQ-BgZbzr56FdvAk0pohqmY_lUVWL/export?format=docx';
     const link = document.createElement('a');
     link.href = exportDocxUrl;
@@ -120,7 +120,7 @@ const Contact = ({ showToast }: ContactProps) => {
     link.click();
     document.body.removeChild(link);
     showToast('Downloading latest resume (DOCX)...', 'success');
-  };
+  }, [showToast]);
 
   return (
     <section id="contact" className="py-12">
@@ -156,6 +156,8 @@ const Contact = ({ showToast }: ContactProps) => {
       </div>
     </section>
   );
-};
+});
+
+Contact.displayName = 'Contact';
 
 export default Contact;

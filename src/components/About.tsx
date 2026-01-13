@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { memo, Suspense } from 'react';
+import { IconCloud } from './ui/interactive-icon-cloud';
+import LoadingSpinner from './LoadingSpinner';
 
-const About = () => {
+const About = memo(() => {
+  // Icon slugs for the interactive cloud - matching your tech stack
+  const techIcons = [
+    'python',
+    'pandas',
+    'jupyter',
+    'numpy',
+    'postgresql',
+    'mysql',
+    'microsoft',
+    'powerbi',
+    'matplotlib',
+    'amazonaws',
+    'googlecloud',
+    'github',
+    'git',
+    'visualstudiocode',
+    'docker',
+    'kubernetes',
+    'javascript',
+    'typescript',
+    'html5',
+    'css3',
+    'nodejs',
+    'react',
+    'tailwindcss',
+    'vercel',
+  ];
+
   const technicalSkills = [
     { icon: '🐍', name: 'Python & Data Analysis' },
     { icon: '📊', name: 'Excel & Statistical Analysis' },
@@ -34,6 +64,19 @@ const About = () => {
               <p className="text-gray-300 text-lg leading-relaxed mb-8 text-center">
                 I'm deeply interested in uncovering actionable insights from raw data — especially in the field of sports analytics. Combining my on-field cricket experience with technical expertise, I focus on analyzing performance trends, player metrics, and match dynamics to support data-driven decisions.
               </p>
+            </div>
+
+            {/* Interactive Tech Stack Cloud */}
+            <div className="mb-12">
+              <h4 className="text-xl font-semibold text-white mb-6 flex items-center justify-center">
+                <span className="mr-3">⚡</span>
+                Tech Stack
+              </h4>
+              <div className="relative flex items-center justify-center overflow-hidden rounded-lg border border-slate-600 bg-slate-800/30 p-8 min-h-[400px]">
+                <Suspense fallback={<LoadingSpinner />}>
+                  <IconCloud iconSlugs={techIcons} theme="dark" />
+                </Suspense>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -74,6 +117,8 @@ const About = () => {
       </section>
     </div>
   );
-};
+});
+
+About.displayName = 'About';
 
 export default About;
