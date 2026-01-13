@@ -242,14 +242,16 @@ const Contact = ({ showToast }: ContactProps) => {
                 </p>
               </div>
 
-              {/* Download Resume Button - below CTA text */}
-              <button 
-                onClick={handleResumeDownload}
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
-              >
-                <Download size={20} />
-                <span>Download Resume</span>
-              </button>
+              {/* Download Resume Button - centered horizontally */}
+              <div className="flex justify-center">
+                <button 
+                  onClick={handleResumeDownload}
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
+                >
+                  <Download size={20} />
+                  <span>Download Resume</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
