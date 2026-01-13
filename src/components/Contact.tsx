@@ -208,15 +208,15 @@ const Contact = ({ showToast }: ContactProps) => {
             {/* Right Side - Profile Picture and CTA */}
             <div className="flex flex-col items-start">
               {/* Profile Picture with Glowing Concentric Circles */}
-              <div className="relative mb-8 w-96 h-96 flex items-center justify-center">
+              <div className="relative mb-8 w-[28rem] h-[28rem] flex items-center justify-center">
                 {/* Outer glowing circles - all blue colored, centered around picture */}
-                <div className="absolute w-96 h-96 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
-                <div className="absolute w-88 h-88 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-                <div className="absolute w-80 h-80 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                <div className="absolute w-72 h-72 rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                <div className="absolute w-[28rem] h-[28rem] rounded-full border-2 border-blue-400/40 animate-pulse"></div>
+                <div className="absolute w-[26rem] h-[26rem] rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute w-[24rem] h-[24rem] rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                <div className="absolute w-[22rem] h-[22rem] rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
                 
                 {/* Profile Picture */}
-                <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
+                <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
                   <img 
                     src="/sriraj1.jpg"
                     alt="W V P S SRIRAJ"
@@ -227,8 +227,19 @@ const Contact = ({ showToast }: ContactProps) => {
                 </div>
               </div>
 
-              {/* Call to Action Text */}
+              {/* Download Resume Button - positioned between picture and CTA */}
               <div className="mb-8">
+                <button 
+                  onClick={handleResumeDownload}
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
+                >
+                  <Download size={20} />
+                  <span>Download Resume</span>
+                </button>
+              </div>
+
+              {/* Call to Action Text */}
+              <div>
                 <p className="text-white text-xl font-bold italic flex items-center gap-2 text-left" style={{
                   textShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
                   filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.4))'
@@ -237,15 +248,6 @@ const Contact = ({ showToast }: ContactProps) => {
                   Let's build something amazing together!
                 </p>
               </div>
-
-              {/* Download Resume Button */}
-              <button 
-                onClick={handleResumeDownload}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
-              >
-                <Download size={20} />
-                <span>Download Resume</span>
-              </button>
             </div>
           </div>
         </div>
