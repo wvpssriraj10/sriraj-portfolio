@@ -117,7 +117,7 @@ const Contact = ({ showToast }: ContactProps) => {
     <div className="night-sky-bg">
       <section id="contact" className="py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Side - Contact Form */}
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -132,7 +132,7 @@ const Contact = ({ showToast }: ContactProps) => {
                     name="name" 
                     value={formData.name} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
                     placeholder="What's your good name?"
                     required
                   />
@@ -148,7 +148,7 @@ const Contact = ({ showToast }: ContactProps) => {
                     type="email"
                     value={formData.email} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
                     placeholder="your.email@example.com"
                     required
                   />
@@ -163,7 +163,7 @@ const Contact = ({ showToast }: ContactProps) => {
                     name="message" 
                     value={formData.message} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
                     rows={6}
                     placeholder="What you want to say?"
                     required
@@ -173,7 +173,7 @@ const Contact = ({ showToast }: ContactProps) => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting} 
-                  className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed"
+                  className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -198,11 +198,9 @@ const Contact = ({ showToast }: ContactProps) => {
 
             {/* Right Side - Profile Picture and CTA */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              {/* Profile Picture with Glowing Effect */}
+              {/* Profile Picture */}
               <div className="relative mb-8">
-                <div className="absolute inset-0 rounded-full animate-pulse bg-gradient-to-r from-cyan-400/40 to-blue-500/40 blur-2xl"></div>
-                <div className="absolute inset-0 rounded-full animate-pulse bg-gradient-to-r from-blue-400/30 to-cyan-500/30 blur-xl"></div>
-                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-cyan-400/50 shadow-2xl">
+                <div className="w-48 h-48 rounded-full overflow-hidden border-2 border-blue-400 shadow-lg">
                   <img 
                     src="/sriraj.jpg"
                     alt="W V P S SRIRAJ"
@@ -216,7 +214,7 @@ const Contact = ({ showToast }: ContactProps) => {
               {/* Call to Action Text */}
               <div className="mb-8">
                 <p className="text-white text-xl font-medium flex items-center justify-center lg:justify-start gap-2">
-                  <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                  <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
                   Let's build something amazing together!
                 </p>
               </div>
@@ -224,7 +222,7 @@ const Contact = ({ showToast }: ContactProps) => {
               {/* Download Resume Button */}
               <button 
                 onClick={handleResumeDownload}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
               >
                 <Download size={20} />
                 <span>Download Resume</span>
