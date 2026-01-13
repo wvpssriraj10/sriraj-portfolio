@@ -208,15 +208,15 @@ const Contact = ({ showToast }: ContactProps) => {
             {/* Right Side - Profile Picture and CTA */}
             <div className="flex flex-col items-start">
               {/* Profile Picture with Glowing Concentric Circles */}
-              <div className="relative mb-8 w-80 h-80 flex items-center justify-center">
+              <div className="relative mb-8 w-96 h-96 flex items-center justify-center">
                 {/* Outer glowing circles - all blue colored, centered around picture */}
-                <div className="absolute w-80 h-80 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
-                <div className="absolute w-72 h-72 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-                <div className="absolute w-64 h-64 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                <div className="absolute w-56 h-56 rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                <div className="absolute w-96 h-96 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
+                <div className="absolute w-88 h-88 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute w-80 h-80 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                <div className="absolute w-72 h-72 rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
                 
                 {/* Profile Picture */}
-                <div className="relative w-52 h-52 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
+                <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
                   <img 
                     src="/sriraj1.jpg"
                     alt="W V P S SRIRAJ"
