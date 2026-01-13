@@ -124,7 +124,7 @@ const Contact = ({ showToast }: ContactProps) => {
                 <input type="text" name="honeypot" value={formData.honeypot} onChange={handleChange} style={{ display: 'none' }} autoComplete="off" />
 
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Name <span className="text-white">*</span>
                   </label>
                   <input 
@@ -132,14 +132,14 @@ const Contact = ({ showToast }: ContactProps) => {
                     name="name" 
                     value={formData.name} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-slate-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    className="w-full px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
                     placeholder="What's your good name?"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Email <span className="text-white">*</span>
                   </label>
                   <input 
@@ -148,14 +148,14 @@ const Contact = ({ showToast }: ContactProps) => {
                     type="email"
                     value={formData.email} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-slate-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    className="w-full px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
                     placeholder="your.email@example.com"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Message <span className="text-white">*</span>
                   </label>
                   <textarea 
@@ -163,7 +163,7 @@ const Contact = ({ showToast }: ContactProps) => {
                     name="message" 
                     value={formData.message} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-slate-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
+                    className="w-full px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
                     rows={6}
                     placeholder="What you want to say?"
                     required
@@ -199,8 +199,8 @@ const Contact = ({ showToast }: ContactProps) => {
             {/* Right Side - Profile Picture and CTA */}
             <div className="flex flex-col items-start">
               {/* Profile Picture with Glowing Concentric Circles */}
-              <div className="relative mb-8 flex items-center justify-start w-64 h-64">
-                {/* Outer glowing circles - all blue colored */}
+              <div className="relative mb-8 w-64 h-64 flex items-center justify-center">
+                {/* Outer glowing circles - all blue colored, centered around picture */}
                 <div className="absolute w-64 h-64 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
                 <div className="absolute w-60 h-60 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
                 <div className="absolute w-56 h-56 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
@@ -220,8 +220,8 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Call to Action Text */}
               <div className="mb-8">
-                <p className="text-white text-xl font-medium flex items-center gap-2">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <p className="text-white text-xl font-medium flex items-center gap-2 text-left">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
                   Let's build something amazing together!
                 </p>
               </div>
