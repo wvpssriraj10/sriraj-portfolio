@@ -229,11 +229,15 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Call to Action Text - right below picture */}
               <div className="mb-8">
-                <p className="text-white text-xl font-bold italic flex items-center gap-2 text-left" style={{
-                  textShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
-                  filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.4))'
+                <p className="text-2xl font-bold italic flex items-center gap-2 text-left" style={{
+                  background: 'linear-gradient(to right, #60a5fa, #06b6d4)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  textShadow: '0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
+                  filter: 'drop-shadow(0 0 8px rgba(96, 165, 250, 0.4))'
                 }}>
-                  <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 animate-slow-jump"></span>
+                  <span className="w-2 h-2 bg-cyan-400 rounded-full flex-shrink-0 animate-slow-jump"></span>
                   Let's build something amazing together!
                 </p>
               </div>
@@ -241,7 +245,7 @@ const Contact = ({ showToast }: ContactProps) => {
               {/* Download Resume Button - below CTA text */}
               <button 
                 onClick={handleResumeDownload}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
               >
                 <Download size={20} />
                 <span>Download Resume</span>
