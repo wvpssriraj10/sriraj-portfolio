@@ -227,19 +227,8 @@ const Contact = ({ showToast }: ContactProps) => {
                 </div>
               </div>
 
-              {/* Download Resume Button - positioned between picture and CTA */}
+              {/* Call to Action Text - right below picture */}
               <div className="mb-8">
-                <button 
-                  onClick={handleResumeDownload}
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
-                >
-                  <Download size={20} />
-                  <span>Download Resume</span>
-                </button>
-              </div>
-
-              {/* Call to Action Text */}
-              <div>
                 <p className="text-white text-xl font-bold italic flex items-center gap-2 text-left" style={{
                   textShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
                   filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.4))'
@@ -248,6 +237,15 @@ const Contact = ({ showToast }: ContactProps) => {
                   Let's build something amazing together!
                 </p>
               </div>
+
+              {/* Download Resume Button - below CTA text */}
+              <button 
+                onClick={handleResumeDownload}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
+              >
+                <Download size={20} />
+                <span>Download Resume</span>
+              </button>
             </div>
           </div>
         </div>
