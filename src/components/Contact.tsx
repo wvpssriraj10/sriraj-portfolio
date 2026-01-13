@@ -229,7 +229,7 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Call to Action Text - right below picture */}
               <div className="mb-8">
-                <p className="text-2xl font-bold italic flex items-center gap-2 text-left" style={{
+                <p className="text-2xl font-bold italic flex items-center gap-2" style={{
                   background: 'linear-gradient(to right, #60a5fa, #06b6d4)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -242,8 +242,8 @@ const Contact = ({ showToast }: ContactProps) => {
                 </p>
               </div>
 
-              {/* Download Resume Button - centered horizontally */}
-              <div className="flex justify-center">
+              {/* Download Resume Button - centered */}
+              <div className="self-center">
                 <button 
                   onClick={handleResumeDownload}
                   className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg"
