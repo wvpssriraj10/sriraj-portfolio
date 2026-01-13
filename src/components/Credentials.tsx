@@ -147,19 +147,46 @@ const Credentials = memo(({ showToast }: CredentialsProps) => {
             </p>
           </div>
 
-          {/* 3D Carousel View - Primary Display */}
-          <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
+          {/* 3D Carousel View */}
+          <div className="mb-12">
             <ParallaxCardCarousel 
               cards={carouselCards}
               autoplaySpeed={4000}
               enableAutoplay={true}
-              cardWidth={360}
-              cardHeight={520}
+              cardWidth={340}
+              cardHeight={500}
               gap={40}
               perspective={1500}
-              maxRotation={25}
+              maxRotation={20}
               backgroundColor="bg-transparent"
             />
+          </div>
+
+          {/* Grid View */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certificates.map((certificate) => (
+              <div
+                key={certificate.id}
+                onClick={() => handleCertificateClick(certificate)}
+                className="bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:transform hover:scale-105 group"
+              >
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={certificate.imageUrl}
+                    alt={certificate.title + ' certificate'}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-white font-semibold text-sm mb-2 line-clamp-2">
+                    {certificate.title}
+                  </h3>
+                  <p className="text-gray-400 text-xs line-clamp-2">{certificate.issuer}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Certificate Modal */}
