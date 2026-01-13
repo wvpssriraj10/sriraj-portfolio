@@ -228,10 +228,10 @@ const Contact = ({ showToast }: ContactProps) => {
               </div>
 
               {/* Call to Action Text - right below picture */}
-              <div className="mb-8">
-                <div className="flex items-center gap-3">
+              <div className="mb-8 w-full">
+                <div className="flex items-center gap-3 w-full">
                   <span className="w-4 h-4 bg-cyan-400 rounded-full flex-shrink-0 animate-slow-jump" style={{ marginTop: '2px' }}></span>
-                  <p className="text-2xl font-bold italic m-0 text-white" style={{
+                  <p className="text-2xl font-bold italic m-0 text-white flex-1 min-w-0" style={{
                     textShadow: '0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
                     filter: 'drop-shadow(0 0 8px rgba(96, 165, 250, 0.4))',
                     lineHeight: '1.2'
