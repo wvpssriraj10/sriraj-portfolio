@@ -198,9 +198,16 @@ const Contact = ({ showToast }: ContactProps) => {
 
             {/* Right Side - Profile Picture and CTA */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              {/* Profile Picture */}
-              <div className="relative mb-8">
-                <div className="w-48 h-48 rounded-full overflow-hidden border-2 border-blue-400 shadow-lg">
+              {/* Profile Picture with Glowing Concentric Circles */}
+              <div className="relative mb-8 flex items-center justify-center w-64 h-64">
+                {/* Outer glowing circles - creating concentric effect */}
+                <div className="absolute w-64 h-64 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
+                <div className="absolute w-60 h-60 rounded-full border-2 border-cyan-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute w-56 h-56 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                <div className="absolute w-52 h-52 rounded-full border-2 border-cyan-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                
+                {/* Profile Picture */}
+                <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
                   <img 
                     src="/sriraj.jpg"
                     alt="W V P S SRIRAJ"
