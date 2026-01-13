@@ -1,36 +1,6 @@
-import React, { memo, Suspense } from 'react';
-import { IconCloud } from './ui/interactive-icon-cloud';
-import LoadingSpinner from './LoadingSpinner';
+import React from 'react';
 
-const About = memo(() => {
-  // Icon slugs for the interactive cloud - matching your tech stack
-  const techIcons = [
-    'python',
-    'pandas',
-    'jupyter',
-    'numpy',
-    'postgresql',
-    'mysql',
-    'microsoft',
-    'powerbi',
-    'matplotlib',
-    'amazonaws',
-    'googlecloud',
-    'github',
-    'git',
-    'visualstudiocode',
-    'docker',
-    'kubernetes',
-    'javascript',
-    'typescript',
-    'html5',
-    'css3',
-    'nodejs',
-    'react',
-    'tailwindcss',
-    'vercel',
-  ];
-
+const About = () => {
   const technicalSkills = [
     { icon: '🐍', name: 'Python & Data Analysis' },
     { icon: '📊', name: 'Excel & Statistical Analysis' },
@@ -44,10 +14,8 @@ const About = memo(() => {
   ];
 
   return (
-    <div className="night-sky-bg relative">
-      {/* Gradient overlay at top to blend with home section */}
-      <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black via-black/80 to-transparent z-0"></div>
-      <section className="py-20 bg-transparent relative z-10">
+    <div className="night-sky-bg">
+      <section className="py-20 bg-transparent">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
@@ -66,19 +34,6 @@ const About = memo(() => {
               <p className="text-gray-300 text-lg leading-relaxed mb-8 text-center">
                 I'm deeply interested in uncovering actionable insights from raw data — especially in the field of sports analytics. Combining my on-field cricket experience with technical expertise, I focus on analyzing performance trends, player metrics, and match dynamics to support data-driven decisions.
               </p>
-            </div>
-
-            {/* Interactive Tech Stack Cloud */}
-            <div className="mb-12">
-              <h4 className="text-xl font-semibold text-white mb-6 flex items-center justify-center">
-                <span className="mr-3">⚡</span>
-                Tech Stack
-              </h4>
-              <div className="relative flex items-center justify-center overflow-hidden rounded-lg border border-slate-600 bg-slate-800/30 p-8 min-h-[400px]">
-                <Suspense fallback={<LoadingSpinner />}>
-                  <IconCloud iconSlugs={techIcons} theme="dark" />
-                </Suspense>
-              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -119,8 +74,6 @@ const About = memo(() => {
       </section>
     </div>
   );
-});
-
-About.displayName = 'About';
+};
 
 export default About;

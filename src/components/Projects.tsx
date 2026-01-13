@@ -1,14 +1,11 @@
-import React, { memo, useCallback } from 'react';
+import React from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 
 interface ProjectsProps {
   onProjectClick: (project: string) => void;
 }
 
-const Projects = memo(({ onProjectClick }: ProjectsProps) => {
-  const handleSrhClick = useCallback(() => {
-    onProjectClick('srh');
-  }, [onProjectClick]);
+const Projects = ({ onProjectClick }: ProjectsProps) => {
   return (
     <div className="night-sky-bg">
       <section className="py-20 bg-transparent">
@@ -42,7 +39,7 @@ const Projects = memo(({ onProjectClick }: ProjectsProps) => {
 
               <div className="flex flex-wrap gap-3 justify-center">
                 <button
-                  onClick={handleSrhClick}
+                  onClick={() => onProjectClick('srh')}
                   className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
                 >
                   <ExternalLink size={16} />
@@ -150,8 +147,6 @@ const Projects = memo(({ onProjectClick }: ProjectsProps) => {
       </section>
     </div>
   );
-});
-
-Projects.displayName = 'Projects';
+};
 
 export default Projects;

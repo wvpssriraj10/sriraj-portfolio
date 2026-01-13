@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React from 'react';
 
-const CricketPortfolio = memo(() => {
+const CricketPortfolio = () => {
   return (
     <div className="night-sky-bg">
       <section className="py-20 bg-transparent">
@@ -47,8 +47,6 @@ const CricketPortfolio = memo(() => {
                       src="/cric-certificate.jpg"
                       alt="Cricket Achievement Certificate"
                       className="w-full object-contain"
-                      loading="lazy"
-                      decoding="async"
                     />
                   </div>
                 </div>
@@ -107,8 +105,6 @@ const CricketPortfolio = memo(() => {
                   src="/cric-portfolio.jpg"
                   alt="Cricket Portfolio"
                   className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="absolute inset-0 rounded-2xl border-4 border-cyan-400/30 animate-pulse pointer-events-none"></div>
@@ -118,8 +114,6 @@ const CricketPortfolio = memo(() => {
       </section>
     </div>
   );
-});
-
-CricketPortfolio.displayName = 'CricketPortfolio';
+};
 
 export default CricketPortfolio;

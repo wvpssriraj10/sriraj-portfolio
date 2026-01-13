@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const Home = memo(() => {
+const Home = () => {
   const scrollToNext = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -19,8 +19,6 @@ const Home = memo(() => {
         }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
-        {/* Gradient overlay at bottom to blend with night sky background */}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent via-black/60 to-black"></div>
       </div>
       
       {/* Content */}
@@ -33,8 +31,6 @@ const Home = memo(() => {
               src="/sriraj.jpg"
               alt="W V P S SRIRAJ"
               className="w-full h-full object-cover relative z-10"
-              loading="eager"
-              decoding="async"
             />
           </div>
         </div>
@@ -68,8 +64,6 @@ const Home = memo(() => {
       </div>
     </div>
   );
-});
-
-Home.displayName = 'Home';
+};
 
 export default Home;
