@@ -161,7 +161,7 @@ const ParallaxCardCarousel: React.FC<ParallaxCardCarouselProps> = ({
       <div className="relative w-full h-full">
         {/* Background Layer */}
         <motion.div 
-          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden"
+          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden"
           style={{ 
             translateZ: isActive && isHovered ? -20 : 0,
             translateX: isActive && isHovered ? -mousePosition.x * 10 : 0,
@@ -241,13 +241,13 @@ const ParallaxCardCarousel: React.FC<ParallaxCardCarouselProps> = ({
         
         {/* Card border */}
         <motion.div 
-          className="absolute inset-0 rounded-2xl border border-gray-700"
+          className="absolute inset-0 rounded-2xl border border-slate-600"
           style={{ 
             boxShadow: isActive && isHovered 
-              ? `0 20px 25px -5px rgba(0, 0, 0, 0.4), 
-                 0 10px 10px -5px rgba(0, 0, 0, 0.2),
-                 inset 0 0 0 1px rgba(255, 255, 255, 0.1)`
-              : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              ? `0 20px 25px -5px rgba(6, 182, 212, 0.3), 
+                 0 10px 10px -5px rgba(0, 0, 0, 0.4),
+                 inset 0 0 0 1px rgba(6, 182, 212, 0.2)`
+              : '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
             translateZ: 10,
           }}
         />
@@ -260,7 +260,7 @@ const ParallaxCardCarousel: React.FC<ParallaxCardCarouselProps> = ({
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center p-4 ${backgroundColor}`}>
+    <div className={`flex flex-col items-center justify-center py-8 ${backgroundColor}`}>
       <div 
         ref={carouselRef}
         className="relative w-full max-w-6xl mx-auto"
