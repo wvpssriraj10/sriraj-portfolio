@@ -229,17 +229,20 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Call to Action Text - right below picture */}
               <div className="mb-8">
-                <p className="text-2xl font-bold italic flex items-center gap-3 leading-tight" style={{
-                  background: 'linear-gradient(to right, #60a5fa, #06b6d4)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textShadow: '0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
-                  filter: 'drop-shadow(0 0 8px rgba(96, 165, 250, 0.4))'
-                }}>
-                  <span className="w-4 h-4 bg-cyan-400 rounded-full flex-shrink-0 animate-slow-jump self-center"></span>
-                  <span>Let's build something amazing together!</span>
-                </p>
+                <div className="flex items-center gap-3">
+                  <span className="w-4 h-4 bg-cyan-400 rounded-full flex-shrink-0 animate-slow-jump" style={{ marginTop: '2px' }}></span>
+                  <p className="text-2xl font-bold italic m-0" style={{
+                    background: 'linear-gradient(to right, #60a5fa, #06b6d4)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textShadow: '0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
+                    filter: 'drop-shadow(0 0 8px rgba(96, 165, 250, 0.4))',
+                    lineHeight: '1.2'
+                  }}>
+                    Let's build something amazing together!
+                  </p>
+                </div>
               </div>
 
               {/* Download Resume Button - centered */}
