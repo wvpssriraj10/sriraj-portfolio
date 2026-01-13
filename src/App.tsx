@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense, useMemo, useCallback } from 'react';
 import { Menu, X, Mail, Linkedin, Github, Instagram, ChevronDown } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import LoadingSpinner from './components/LoadingSpinner';
 
 // Portfolio Components - Code splitting with React.lazy()
@@ -275,6 +276,9 @@ function App() {
           onClose={() => setToast(null)}
         />
       )}
+      
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
