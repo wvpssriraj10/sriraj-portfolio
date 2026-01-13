@@ -19,6 +19,8 @@ const Home = memo(() => {
         }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
+        {/* Gradient overlay at bottom to blend with night sky background */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent via-black/60 to-black"></div>
       </div>
       
       {/* Content */}

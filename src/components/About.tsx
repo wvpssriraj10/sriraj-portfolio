@@ -44,8 +44,10 @@ const About = memo(() => {
   ];
 
   return (
-    <div className="night-sky-bg">
-      <section className="py-20 bg-transparent">
+    <div className="night-sky-bg relative">
+      {/* Gradient overlay at top to blend with home section */}
+      <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black via-black/80 to-transparent z-0"></div>
+      <section className="py-20 bg-transparent relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
