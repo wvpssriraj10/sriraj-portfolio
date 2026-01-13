@@ -125,14 +125,14 @@ const Contact = ({ showToast }: ContactProps) => {
 
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
-                    Your Name<span className="text-cyan-400">*</span>
+                    Your Name <span className="text-white">*</span>
                   </label>
                   <input 
                     id="name" 
                     name="name" 
                     value={formData.name} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    className="w-full px-4 py-3 bg-slate-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
                     placeholder="What's your good name?"
                     required
                   />
@@ -140,7 +140,7 @@ const Contact = ({ showToast }: ContactProps) => {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
-                    Your Email<span className="text-cyan-400">*</span>
+                    Your Email <span className="text-white">*</span>
                   </label>
                   <input 
                     id="email" 
@@ -148,7 +148,7 @@ const Contact = ({ showToast }: ContactProps) => {
                     type="email"
                     value={formData.email} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    className="w-full px-4 py-3 bg-slate-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
                     placeholder="your.email@example.com"
                     required
                   />
@@ -156,14 +156,14 @@ const Contact = ({ showToast }: ContactProps) => {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
-                    Your Message<span className="text-cyan-400">*</span>
+                    Your Message <span className="text-white">*</span>
                   </label>
                   <textarea 
                     id="message" 
                     name="message" 
                     value={formData.message} 
                     onChange={handleChange} 
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
+                    className="w-full px-4 py-3 bg-slate-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
                     rows={6}
                     placeholder="What you want to say?"
                     required
@@ -179,14 +179,14 @@ const Contact = ({ showToast }: ContactProps) => {
                 </button>
 
                 {/* Social Icons Below Form */}
-                <div className="flex justify-center gap-6 pt-4">
+                <div className="flex gap-6 pt-4">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-cyan-400 transition-colors"
+                      className="text-white hover:text-cyan-400 transition-colors"
                       aria-label={social.label}
                     >
                       <social.icon size={24} />
@@ -197,19 +197,19 @@ const Contact = ({ showToast }: ContactProps) => {
             </div>
 
             {/* Right Side - Profile Picture and CTA */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="flex flex-col items-start">
               {/* Profile Picture with Glowing Concentric Circles */}
-              <div className="relative mb-8 flex items-center justify-center w-64 h-64">
-                {/* Outer glowing circles - creating concentric effect */}
+              <div className="relative mb-8 flex items-center justify-start w-64 h-64">
+                {/* Outer glowing circles - all blue colored */}
                 <div className="absolute w-64 h-64 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
-                <div className="absolute w-60 h-60 rounded-full border-2 border-cyan-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute w-60 h-60 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
                 <div className="absolute w-56 h-56 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                <div className="absolute w-52 h-52 rounded-full border-2 border-cyan-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                <div className="absolute w-52 h-52 rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
                 
                 {/* Profile Picture */}
                 <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
                   <img 
-                    src="/sriraj.jpg"
+                    src="/sriraj1.jpg"
                     alt="W V P S SRIRAJ"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -220,8 +220,8 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Call to Action Text */}
               <div className="mb-8">
-                <p className="text-white text-xl font-medium flex items-center justify-center lg:justify-start gap-2">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                <p className="text-white text-xl font-medium flex items-center gap-2">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                   Let's build something amazing together!
                 </p>
               </div>
