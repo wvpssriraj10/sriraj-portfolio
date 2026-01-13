@@ -37,14 +37,11 @@ const Contact = ({ showToast }: ContactProps) => {
     setIsSubmitting(true);
 
     try {
-      // Use NODE_ENV for build-time detection of development vs production.
-      // Fallback to hostname check in case NODE_ENV isn't available.
       const isLocal = (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'development')
         || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
 
       let response: Response;
       if (isLocal) {
-        // When running locally, post directly to FormSubmit
         const form = new FormData();
         form.append('name', formData.name);
         form.append('email', formData.email);
@@ -60,7 +57,6 @@ const Contact = ({ showToast }: ContactProps) => {
           headers: { 'Accept': 'application/json' }
         });
       } else {
-        // Production: send JSON to our serverless function
         response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
@@ -75,28 +71,16 @@ const Contact = ({ showToast }: ContactProps) => {
         });
       }
 
-      // Log response for debugging
-      console.log('Contact form response status:', response.status);
-      let responseBody: any = null;
-      try {
-        responseBody = await response.clone().json().catch(() => null);
-        console.log('Contact form response body:', responseBody);
-      } catch (err) {
-        console.log('No JSON body in contact response');
-      }
-
       if (response.ok) {
         showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
         setFormData({ name: '', email: '', message: '', honeypot: '' });
       } else {
-        // Prefer server-provided message if available
+        const responseBody = await response.json().catch(() => ({}));
         const serverMessage = responseBody?.message || 'Failed to send message.';
         showToast(serverMessage, 'error');
-        throw new Error(serverMessage);
       }
     } catch (error: any) {
       console.error('Error sending contact message:', error);
-      // If error has message, surface it; otherwise show generic fallback
       const errMsg = error?.message || 'Failed to send message. Please try again or contact me directly.';
       showToast(errMsg, 'error');
     } finally {
@@ -122,85 +106,130 @@ const Contact = ({ showToast }: ContactProps) => {
     showToast('Downloading latest resume (DOCX)...', 'success');
   };
 
+  const socialLinks = [
+    { icon: Mail, href: 'mailto:wsriraj10@gmail.com', label: 'Email' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/sriraj-w-v-p-s', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/wvpssriraj10', label: 'GitHub' },
+    { icon: Instagram, href: 'https://www.instagram.com/w.v.p.s.sriraj_10/', label: 'Instagram' }
+  ];
+
   return (
     <div className="night-sky-bg">
       <section id="contact" className="py-20 bg-transparent">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Contact Me</h2>
-            <div className="w-24 h-1 bg-cyan-400 mx-auto mb-4"></div>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-              Get in touch with me for collaborations, opportunities, or just to say hello!
-            </p>
-          </div>
-          
-          <div className="max-w-3xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6 bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
-              <input type="text" name="honeypot" value={formData.honeypot} onChange={handleChange} style={{ display: 'none' }} autoComplete="off" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Contact Form */}
+            <div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <input type="text" name="honeypot" value={formData.honeypot} onChange={handleChange} style={{ display: 'none' }} autoComplete="off" />
 
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-white mb-2">Name</label>
-                <input 
-                  id="name" 
-                  name="name" 
-                  value={formData.name} 
-                  onChange={handleChange} 
-                  className="mt-1 block w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent" 
-                  placeholder="Your name"
-                />
-              </div>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+                    Your Name<span className="text-cyan-400">*</span>
+                  </label>
+                  <input 
+                    id="name" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleChange} 
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    placeholder="What's your good name?"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-2">Email</label>
-                <input 
-                  id="email" 
-                  name="email" 
-                  type="email"
-                  value={formData.email} 
-                  onChange={handleChange} 
-                  className="mt-1 block w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent" 
-                  placeholder="your.email@example.com"
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                    Your Email<span className="text-cyan-400">*</span>
+                  </label>
+                  <input 
+                    id="email" 
+                    name="email" 
+                    type="email"
+                    value={formData.email} 
+                    onChange={handleChange} 
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all" 
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-white mb-2">Message</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  value={formData.message} 
-                  onChange={handleChange} 
-                  className="mt-1 block w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none" 
-                  rows={6}
-                  placeholder="Your message..."
-                />
-              </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
+                    Your Message<span className="text-cyan-400">*</span>
+                  </label>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    value={formData.message} 
+                    onChange={handleChange} 
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all" 
+                    rows={6}
+                    placeholder="What you want to say?"
+                    required
+                  />
+                </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <button 
                   type="submit" 
                   disabled={isSubmitting} 
-                  className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <span className="animate-spin">⏳</span>
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
-                <button 
-                  type="button" 
-                  onClick={handleResumeDownload} 
-                  className="w-full sm:w-auto border border-cyan-400 text-cyan-300 hover:text-white hover:bg-cyan-400/10 px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <Download size={16} />
-                  <span>Download Resume</span>
-                </button>
+
+                {/* Social Icons Below Form */}
+                <div className="flex justify-center gap-6 pt-4">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-cyan-400 transition-colors"
+                      aria-label={social.label}
+                    >
+                      <social.icon size={24} />
+                    </a>
+                  ))}
+                </div>
+              </form>
+            </div>
+
+            {/* Right Side - Profile Picture and CTA */}
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              {/* Profile Picture with Glowing Effect */}
+              <div className="relative mb-8">
+                <div className="absolute inset-0 rounded-full animate-pulse bg-gradient-to-r from-cyan-400/40 to-blue-500/40 blur-2xl"></div>
+                <div className="absolute inset-0 rounded-full animate-pulse bg-gradient-to-r from-blue-400/30 to-cyan-500/30 blur-xl"></div>
+                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-cyan-400/50 shadow-2xl">
+                  <img 
+                    src="/sriraj.jpg"
+                    alt="W V P S SRIRAJ"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
-            </form>
+
+              {/* Call to Action Text */}
+              <div className="mb-8">
+                <p className="text-white text-xl font-medium flex items-center justify-center lg:justify-start gap-2">
+                  <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                  Let's build something amazing together!
+                </p>
+              </div>
+
+              {/* Download Resume Button */}
+              <button 
+                onClick={handleResumeDownload}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
+              >
+                <Download size={20} />
+                <span>Download Resume</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
