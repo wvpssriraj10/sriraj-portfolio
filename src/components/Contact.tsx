@@ -117,6 +117,15 @@ const Contact = ({ showToast }: ContactProps) => {
     <div className="night-sky-bg">
       <section id="contact" className="py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">Contact Me</h2>
+            <div className="w-24 h-1 bg-cyan-400 mx-auto mb-4"></div>
+            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+              Get in touch with me for collaborations, opportunities, or just to say hello!
+            </p>
+          </div>
+          
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Side - Contact Form */}
             <div>
@@ -199,15 +208,15 @@ const Contact = ({ showToast }: ContactProps) => {
             {/* Right Side - Profile Picture and CTA */}
             <div className="flex flex-col items-start">
               {/* Profile Picture with Glowing Concentric Circles */}
-              <div className="relative mb-8 w-64 h-64 flex items-center justify-center">
+              <div className="relative mb-8 w-80 h-80 flex items-center justify-center">
                 {/* Outer glowing circles - all blue colored, centered around picture */}
-                <div className="absolute w-64 h-64 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
-                <div className="absolute w-60 h-60 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-                <div className="absolute w-56 h-56 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                <div className="absolute w-52 h-52 rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                <div className="absolute w-80 h-80 rounded-full border-2 border-blue-400/40 animate-pulse"></div>
+                <div className="absolute w-72 h-72 rounded-full border-2 border-blue-400/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute w-64 h-64 rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                <div className="absolute w-56 h-56 rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
                 
                 {/* Profile Picture */}
-                <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
+                <div className="relative w-52 h-52 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800">
                   <img 
                     src="/sriraj1.jpg"
                     alt="W V P S SRIRAJ"
@@ -220,8 +229,11 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Call to Action Text */}
               <div className="mb-8">
-                <p className="text-white text-xl font-medium flex items-center gap-2 text-left">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                <p className="text-white text-xl font-bold italic flex items-center gap-2 text-left" style={{
+                  textShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
+                  filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.4))'
+                }}>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 animate-slow-jump"></span>
                   Let's build something amazing together!
                 </p>
               </div>
