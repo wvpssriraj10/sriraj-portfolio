@@ -37,8 +37,11 @@ const Contact = ({ showToast }: ContactProps) => {
     setIsSubmitting(true);
 
     try {
-      const isLocal = (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'development')
-        || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
+      const isLocal =
+        (typeof window !== 'undefined' &&
+          (window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1')) ||
+        import.meta.env.DEV;
 
       let response: Response;
       if (isLocal) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { X, ExternalLink } from 'lucide-react';
 
 interface CredentialsProps {
@@ -54,6 +54,27 @@ const Credentials = ({ showToast }: CredentialsProps) => {
       imageUrl: '/MAS_Certificate.jpg',
       brief: 'This "Certificate of Completion" from Mad About Sports is for a "5-days workshop on Cricket Analytics," issued on March 23rd, 2025. The certificate outlines key skills gained: "Analyze and interpret cricket match data using professional analytics techniques," "Apply data-driven decision-making to select the best XI for India\'s next match," and "Utilize a step-by-step framework to pursue a part-time or full-time career in cricket analytics." This showcases specialized analytical skills applied to the domain of sports, specifically cricket.',
       linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_cricketanalytics-sportsdata-iplanalysis-activity-7309584706583310336-wDhW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
+    },
+    {
+      id: 'superr-selector-2025',
+      title: 'SupeRR Selector 2025 Certificate of Participation',
+      issuer: 'Rajasthan Royals - SupeRR Selector Hackathon 2025',
+      description: 'SupeRR Selector 2025 Certificate of Participation',
+      imageUrl: '/SupeRR-Selector-2025.png',
+      brief:
+        'Certificate of Participation for SupeRR Selector 2025, a hackathon organized by Rajasthan Royals. This experience focused on applying data-driven thinking to cricket strategy, squad composition, and decision-making under constraints.',
+      linkedinUrl:
+        'https://www.linkedin.com/posts/sriraj-w-v-p-s_rajasthanroyals-superrselector-cricketanalytics-activity-7411778327243550720-Ft76?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
+    },
+    {
+      id: 'byte-mole',
+      title: 'Byte & Mole Hackathon Certificate of Participation',
+      issuer: 'VIT-AP University',
+      description: 'Byte & Mole Hackathon Certificate',
+      imageUrl: '/Byte-Mole-Hackathon.png',
+      brief:
+        'Certificate of Participation for the Byte & Mole Hackathon at VIT-AP University, recognizing active involvement in a coding-and-chemistry themed event that encouraged creativity and collaboration.',
+      linkedinUrl: ''
     },
     {
       id: 'commonwealth',
@@ -184,14 +205,16 @@ const Credentials = ({ showToast }: CredentialsProps) => {
                     <p className="text-gray-200 text-base text-center whitespace-pre-line">{selectedCertificate.brief}</p>
                   </div>
                   <div className="flex flex-col items-center gap-3">
-                    <button
+                    <a
+                      href={selectedCertificate.imageUrl}
+                      download
                       onClick={() => {
-                        showToast(`Download started for ${selectedCertificate.title}`, 'success');
+                        showToast(`Downloading ${selectedCertificate.title}`, 'success');
                       }}
                       className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                     >
                       Download Certificate
-                    </button>
+                    </a>
                     {selectedCertificate.linkedinUrl && (
                       <a
                         href={selectedCertificate.linkedinUrl}

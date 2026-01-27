@@ -141,6 +141,18 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                   Authored detailed Meeting Minutes to ensure clear communication and alignment on project goals within the team.
                 </li>
               </ul>
+
+              <div className="flex flex-wrap gap-3 justify-center mt-6">
+                <a
+                  href="https://www.linkedin.com/posts/sriraj-w-v-p-s_completed-data-analyst-internship-at-arham-activity-7414728132957483009-P_Kf?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2 bg-slate-900/60"
+                >
+                  <ExternalLink size={16} />
+                  <span>LinkedIn Post</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
