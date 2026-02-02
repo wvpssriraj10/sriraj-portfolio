@@ -8,16 +8,16 @@ interface ProjectsProps {
 const Projects = ({ onProjectClick }: ProjectsProps) => {
   return (
     <div className="night-sky-bg">
-      <section className="py-20 bg-transparent">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Projects & Experience</h2>
+      <section className="py-12 sm:py-20 bg-transparent">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Projects & Experience</h2>
             <div className="w-24 h-1 bg-cyan-400 mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {/* SRH Project */}
-            <div className="bg-gradient-to-br from-cyan-700/60 to-blue-800/60 rounded-2xl p-8 border-2 border-cyan-400 shadow-xl">
+            <div className="bg-gradient-to-br from-cyan-700/60 to-blue-800/60 rounded-2xl p-5 sm:p-8 border-2 border-cyan-400 shadow-xl">
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
                 <span className="mr-3">🏏</span>
                 SRH IPL EDA Dashboard
@@ -26,21 +26,21 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                 Comprehensive analysis of Sunrisers Hyderabad using Cricsheet ball-by-ball data. Interactive dashboard with detailed insights into team performance, player statistics, and match outcomes.
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                 {['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Jupyter'].map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-cyan-600/20 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-600/30"
+                    className="bg-cyan-600/20 text-cyan-300 px-2.5 py-1 rounded-full text-xs sm:text-sm border border-cyan-600/30 break-normal"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
                 <button
                   onClick={() => onProjectClick('srh')}
-                  className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                  className="min-h-[44px] px-4 py-2.5 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center space-x-2"
                 >
                   <ExternalLink size={16} />
                   <span>View Project</span>
@@ -50,7 +50,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                   href="https://github.com/wvpssriraj10/srh-eda-dashboard"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2"
                 >
                   <Github size={16} />
                   <span>GitHub</span>
@@ -60,7 +60,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                   href="https://srh-data-insights.hashnode.dev/uncovering-srhs-ipl-journey-a-data-driven-exploration-using-python"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2"
                 >
                   <ExternalLink size={16} />
                   <span>Blog Post</span>
@@ -69,7 +69,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             </div>
 
             {/* Prodigy Internship - Highlighted */}
-            <div className="bg-gradient-to-br from-cyan-700/60 to-blue-800/60 rounded-2xl p-8 border-2 border-cyan-400 shadow-xl">
+            <div className="bg-gradient-to-br from-cyan-700/60 to-blue-800/60 rounded-2xl p-5 sm:p-8 border-2 border-cyan-400 shadow-xl">
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
                 <span className="mr-3">📊</span>
                 Data Science Internship – Prodigy Infotech
@@ -77,22 +77,22 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
               <p className="text-cyan-200 mb-6 leading-relaxed font-semibold text-center">
                 Successfully completed a 1-month Data Science internship with outstanding remarks. Worked on real-world projects involving data cleaning, visualization, machine learning, and deriving actionable insights from complex datasets using Python and various data science libraries.
               </p>
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                 {['Python', 'Machine Learning', 'Data Visualization', 'Pandas', 'Data Analysis'].map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-cyan-600/20 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-600/30"
+                    className="bg-cyan-600/20 text-cyan-300 px-2.5 py-1 rounded-full text-xs sm:text-sm border border-cyan-600/30 break-normal"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
                 <a
                   href="https://www.linkedin.com/posts/sriraj-w-v-p-s_datascience-internship-learning-activity-7313062644590985216-nmdn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2 bg-slate-900/60"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2.5 rounded-lg text-sm font-bold transition-colors space-x-2 bg-slate-900/60"
                 >
                   <ExternalLink size={16} />
                   <span>LinkedIn Post</span>
@@ -101,7 +101,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             </div>
 
             {/* Lead Generation & Sales Dashboard - Arham World */}
-            <div className="bg-gradient-to-br from-cyan-700/60 to-blue-800/60 rounded-2xl p-8 border-2 border-cyan-400 shadow-xl">
+            <div className="bg-gradient-to-br from-cyan-700/60 to-blue-800/60 rounded-2xl p-5 sm:p-8 border-2 border-cyan-400 shadow-xl">
               <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
                 <span className="mr-3">📈</span>
                 Lead Generation & Sales Dashboard
@@ -115,11 +115,11 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                 Built a comprehensive lead generation database and an interactive sales dashboard for the Education Wing. Work included market research, data cleaning, visualization, and documentation—delivering an actionable list of 500+ qualified leads and a dynamic dashboard with insights on segments and sales performance.
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                 {['Lead Generation', 'Google Sheets', 'REGEXEXTRACT', 'TRIM', 'Pivot Tables', 'Charts', 'KPI Scorecards', 'Slicers', 'Data Cleaning', 'Documentation'].map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-cyan-600/20 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-600/30"
+                    className="bg-cyan-600/20 text-cyan-300 px-2.5 py-1 rounded-full text-xs sm:text-sm border border-cyan-600/30 break-normal"
                   >
                     {tag}
                   </span>
@@ -142,12 +142,12 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                 </li>
               </ul>
 
-              <div className="flex flex-wrap gap-3 justify-center mt-6">
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mt-4 sm:mt-6">
                 <a
                   href="https://www.linkedin.com/posts/sriraj-w-v-p-s_completed-data-analyst-internship-at-arham-activity-7414728132957483009-P_Kf?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2 bg-slate-900/60"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2.5 rounded-lg text-sm font-bold transition-colors space-x-2 bg-slate-900/60"
                 >
                   <ExternalLink size={16} />
                   <span>LinkedIn Post</span>

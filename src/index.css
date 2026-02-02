@@ -27,11 +27,16 @@
 }
 
 /* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 
@@ -124,13 +129,29 @@ html, body {
   background: #6b7280;
 }
 
-/* Focus styles for accessibility */
-button:focus,
-input:focus,
-textarea:focus,
-button:active {
+/* Focus styles for accessibility - visible ring, touch feedback */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
   outline: none;
-  box-shadow: none;
+}
+
+/* Touch feedback for mobile */
+@media (hover: none) {
+  button:active,
+  a:active,
+  [role="button"]:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
 }
 
 /* Custom text shadow for better visibility */
@@ -176,6 +197,23 @@ body {
   font-family: 'Montserrat', 'Open Sans', 'Lato', 'Roboto', sans-serif;
   overflow-x: hidden;
   justify-content: center;
+  min-height: 100vh;
+}
+
+/* Prevent fixed header from covering section when scrolling to anchor */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Minimum touch target for mobile (44x44px) */
+@media (max-width: 768px) {
+  .touch-target-min {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

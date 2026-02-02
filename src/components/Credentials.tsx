@@ -138,37 +138,38 @@ const Credentials = ({ showToast }: CredentialsProps) => {
 
   return (
     <div className="night-sky-bg">
-      <section className="py-20 bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">My Credentials</h2>
+      <section className="py-12 sm:py-20 bg-transparent">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">My Credentials</h2>
             <div className="w-24 h-1 bg-cyan-400 mx-auto mb-4"></div>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            <p className="text-gray-400 text-base sm:text-lg max-w-3xl mx-auto px-1">
               Professional certifications and internship experiences that showcase my commitment to continuous learning
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Single column on mobile (<640px), 2 cols md, 4 cols lg; gap 20-24px mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {certificates.map((certificate) => (
               <div
                 key={certificate.id}
                 onClick={() => handleCertificateClick(certificate)}
-                className="bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:transform hover:scale-105 group"
+                className="bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:transform hover:scale-105 group active:scale-[0.98]"
               >
-                <div className="h-48 overflow-hidden">
-                  <a href="#cricket-portfolio" aria-label="View Cricket Portfolio section">
-                    <img
-                      src={certificate.imageUrl}
-                      alt={certificate.title + ' certificate'}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </a>
+                {/* Center image on mobile so it's not cropped; use object-contain to show full certificate */}
+                <div className="h-44 sm:h-48 overflow-hidden flex items-center justify-center bg-slate-900/50">
+                  <img
+                    src={certificate.imageUrl}
+                    alt={certificate.title + ' certificate'}
+                    className="w-full max-w-full h-full min-h-0 object-contain object-center group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-white font-semibold text-sm mb-2 line-clamp-2">
+                  <h3 className="text-white font-semibold text-sm mb-2 line-clamp-2 break-words min-w-0">
                     {certificate.title}
                   </h3>
-                  <p className="text-gray-400 text-xs line-clamp-2">{certificate.issuer}</p>
+                  <p className="text-gray-400 text-xs line-clamp-2 break-words min-w-0">{certificate.issuer}</p>
                 </div>
               </div>
             ))}
@@ -176,14 +177,15 @@ const Credentials = ({ showToast }: CredentialsProps) => {
 
           {/* Certificate Modal */}
           {selectedCertificate && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
               <div className="bg-slate-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-700">
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-bold text-white">{selectedCertificate.title}</h3>
+                <div className="p-4 sm:p-6">
+                  <div className="flex justify-between items-start gap-2 mb-4">
+                    <h3 className="text-lg sm:text-2xl font-bold text-white break-words min-w-0 pr-2">{selectedCertificate.title}</h3>
                     <button
                       onClick={() => setSelectedCertificate(null)}
-                      className="text-gray-400 hover:text-white"
+                      className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-white rounded-lg flex-shrink-0"
+                      aria-label="Close"
                     >
                       <X size={24} />
                     </button>
@@ -193,16 +195,16 @@ const Credentials = ({ showToast }: CredentialsProps) => {
                     <p className="text-cyan-400 font-semibold text-lg">{selectedCertificate.issuer}</p>
                   </div>
 
-                  <div className="mb-6">
+                  <div className="mb-4 sm:mb-6">
                     <img
                       src={selectedCertificate.imageUrl}
                       alt={selectedCertificate.title}
-                      className="w-full h-auto rounded-lg border border-slate-600"
+                      className="w-full max-w-full h-auto object-contain rounded-lg border border-slate-600"
                     />
                   </div>
 
-                  <div className="mb-6">
-                    <p className="text-gray-200 text-base text-center whitespace-pre-line">{selectedCertificate.brief}</p>
+                  <div className="mb-4 sm:mb-6">
+                    <p className="text-gray-200 text-sm sm:text-base text-center whitespace-pre-line leading-relaxed">{selectedCertificate.brief}</p>
                   </div>
                   <div className="flex flex-col items-center gap-3">
                     <a
@@ -211,7 +213,7 @@ const Credentials = ({ showToast }: CredentialsProps) => {
                       onClick={() => {
                         showToast(`Downloading ${selectedCertificate.title}`, 'success');
                       }}
-                      className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                      className="min-h-[48px] w-full sm:w-auto inline-flex items-center justify-center bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                     >
                       Download Certificate
                     </a>
@@ -220,7 +222,7 @@ const Credentials = ({ showToast }: CredentialsProps) => {
                         href={selectedCertificate.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border border-slate-600 text-cyan-300 hover:text-white hover:border-slate-500 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 mt-2"
+                        className="min-h-[48px] w-full sm:w-auto inline-flex items-center justify-center border border-slate-600 text-cyan-300 hover:text-white hover:border-slate-500 px-6 py-3 rounded-lg font-medium transition-colors space-x-2"
                       >
                         <ExternalLink size={16} />
                         <span>LinkedIn Post</span>

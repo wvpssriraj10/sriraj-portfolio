@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, Linkedin, Github, Instagram, ChevronDown } from 'lucide-react';
+import { Menu, X, Mail, Linkedin, Github, Instagram } from 'lucide-react';
 
 // Portfolio Components
 import Home from './components/Home';
@@ -101,19 +101,19 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 ${
+      {/* Navigation - z-[100] ensures header stays above content when scrolling */}
+      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         isScrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-700' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo - Clickable */}
+          <div className="flex items-center justify-between h-16 min-h-[64px] gap-2">
+            {/* Logo - Clickable, flex-shrink-0 prevents overlap */}
             <button 
               onClick={goToHome}
-              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity flex-shrink-0 min-h-[44px] min-w-[44px] -ml-2 pl-2 justify-start md:min-w-0 md:ml-0 md:pl-0"
             >
-              <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
-              <span className="text-xl font-bold text-white">
+              <img src="/logo.png" alt="Logo" className="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+              <span className="text-lg sm:text-xl font-bold text-white truncate">
                 Sriraj
               </span>
             </button>
@@ -153,11 +153,13 @@ function App() {
               ))}
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
+            {/* Mobile menu button - min 44x44px touch target */}
+            <div className="md:hidden flex-shrink-0">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-400 hover:text-white focus:outline-none focus:text-white"
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-lg active:opacity-90 transition-colors"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -165,42 +167,40 @@ function App() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        {/* Mobile Navigation - smooth open/close */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+          <div className="px-4 pt-2 pb-4 space-y-1 bg-slate-900/98 backdrop-blur-md border-b border-slate-700">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors ${
+                  className={`block w-full text-left px-3 py-3 rounded-lg text-base font-medium min-h-[44px] flex items-center transition-colors ${
                     currentSection === item.id
-                      ? 'text-cyan-400'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'text-cyan-400 bg-cyan-400/10'
+                      : 'text-gray-300 hover:text-white hover:bg-slate-700/50'
                   }`}
                 >
                   {item.label}
                 </button>
               ))}
               
-              {/* Mobile Social Icons */}
-              <div className="flex justify-center space-x-6 pt-4 border-t border-slate-700">
+              {/* Mobile Social Icons - 44x44 touch targets, 12-16px gap */}
+              <div className="flex justify-center gap-4 pt-4 border-t border-slate-700">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors"
+                    className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-colors rounded-lg active:opacity-80"
                     aria-label={social.label}
                   >
-                    <social.icon size={20} />
+                    <social.icon size={22} />
                   </a>
                 ))}
               </div>
             </div>
           </div>
-        )}
       </nav>
 
       {/* Main Content */}
