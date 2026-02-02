@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
 
 /* Custom animations */
 @keyframes slide-in {
@@ -8,6 +15,7 @@
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -31,7 +39,8 @@ html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -69,9 +78,12 @@ html, body {
 
 /* Pulse animation */
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -83,10 +95,13 @@ html, body {
 
 /* Bounce animation */
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-25%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+
   50% {
     transform: translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -99,9 +114,12 @@ html, body {
 
 /* Slow jump animation for blue circle */
 @keyframes slow-jump {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-8px);
   }
@@ -146,6 +164,7 @@ textarea:focus:not(:focus-visible) {
 
 /* Touch feedback for mobile */
 @media (hover: none) {
+
   button:active,
   a:active,
   [role="button"]:active {
@@ -194,7 +213,7 @@ textarea:focus:not(:focus-visible) {
 }
 
 body {
-  font-family: 'Montserrat', 'Open Sans', 'Lato', 'Roboto', sans-serif;
+  font-family: var(--font-body);
   overflow-x: hidden;
   justify-content: center;
   min-height: 100vh;
@@ -216,8 +235,13 @@ section[id] {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', 'Open Sans', 'Lato', 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 /* Night sky background for all pages except homepage */
@@ -227,4 +251,47 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
+}
+
+/* Enhanced Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Glow Effects */
+.glow-text {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.glow-box {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+/* Smooth fade in for content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
