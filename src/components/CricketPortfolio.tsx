@@ -73,7 +73,7 @@ const CricketPortfolio = () => {
                 </div>
                 <div className="space-y-2 text-gray-200 ml-9 text-center font-light">
                   <p>Left-arm medium pacer and left-handed batsman 🏏</p>
-                  <p className="italic text-cyan-400">'Cricket may look easy, but fast bowling isn\'t.'</p>
+                  <p className="italic text-cyan-400">'Cricket may look easy, but fast bowling isn't.'</p>
                   <p>Swing bowler with control in powerplay and death.</p>
                   <p>Calm under pressure, and good strike rotating in batting.</p>
                   <p>Strong fielding skills, especially in the inner ring</p>
