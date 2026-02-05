@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, Linkedin, Github, Instagram, Download } from 'lucide-react';
 
+// ContactProps removed as showToast is no longer used
 interface ContactProps {
   showToast: (message: string, type: 'success' | 'error') => void;
 }
 
-const Contact = ({ showToast }: ContactProps) => {
+const Contact = ({ }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,92 +14,9 @@ const Contact = ({ showToast }: ContactProps) => {
     honeypot: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
 
-    if (formData.honeypot !== '') {
-      showToast('Spam detected. Please try again.', 'error');
-      return;
-    }
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      showToast('Please fill in all fields.', 'error');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      showToast('Please enter a valid email address.', 'error');
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const isLocal =
-        (typeof window !== 'undefined' &&
-          (window.location.hostname === 'localhost' ||
-            window.location.hostname === '127.0.0.1')) ||
-        import.meta.env.DEV;
-
-      let response: Response;
-      if (isLocal) {
-        const form = new FormData();
-        form.append('name', formData.name);
-        form.append('email', formData.email);
-        form.append('message', formData.message);
-        form.append('_subject', `New message from ${formData.name}`);
-        form.append('_replyto', formData.email);
-        form.append('_captcha', 'false');
-        form.append('_template', 'table');
-
-        response = await fetch('https://formsubmit.co/ajax/wsriraj10@gmail.com', {
-          method: 'POST',
-          body: form,
-          headers: { 'Accept': 'application/json' }
-        });
-      } else {
-        response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-          })
-        });
-      }
-
-      if (response.ok) {
-        showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
-        setFormData({ name: '', email: '', message: '', honeypot: '' });
-      } else {
-        const text = await response.text();
-        console.error('Submission error:', response.status, text);
-
-        let serverMessage = 'Failed to send message.';
-        try {
-          const data = JSON.parse(text);
-          serverMessage = data.message || serverMessage;
-        } catch (e) {
-          // If response is not JSON (e.g. HTML error page), don't show raw HTML in toast
-          serverMessage = 'Submission failed. Please check the console for details.';
-        }
-        showToast(serverMessage, 'error');
-      }
-    } catch (error: unknown) {
-      console.error('Error sending contact message:', error);
-      const errMsg = error instanceof Error ? error.message : 'Failed to send message. Please try again or contact me directly.';
-      showToast(errMsg, 'error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -140,8 +58,17 @@ const Contact = ({ showToast }: ContactProps) => {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
             {/* Left Side - Contact Form - 20-24px horizontal padding */}
             <div className="w-full min-w-0">
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <input type="text" name="honeypot" value={formData.honeypot} onChange={handleChange} style={{ display: 'none' }} autoComplete="off" />
+              <form
+                action="https://formsubmit.co/wsriraj10@gmail.com"
+                method="POST"
+                className="space-y-4 sm:space-y-6"
+              >
+                {/* Configuration Fields for FormSubmit */}
+                <input type="text" name="_honey" style={{ display: 'none' }} />
+                <input type="hidden" name="_captcha" value="true" /> {/* Keep true so user can solve it if blocked */}
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} /> {/* Redirect back to same page */}
+                <input type="hidden" name="_subject" value="New submission from Portfolio" />
 
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white mb-2 text-left">
@@ -192,10 +119,9 @@ const Contact = ({ showToast }: ContactProps) => {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full min-h-[48px] bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 active:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 disabled:cursor-not-allowed"
+                  className="w-full min-h-[48px] bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  Send Message
                 </button>
 
                 {/* Social Icons - 44x44 touch targets; centered on mobile only */}
