@@ -17,7 +17,7 @@ const Contact = ({ showToast }: ContactProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (formData.honeypot !== '') {
       showToast('Spam detected. Please try again.', 'error');
       return;
@@ -78,8 +78,17 @@ const Contact = ({ showToast }: ContactProps) => {
         showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
         setFormData({ name: '', email: '', message: '', honeypot: '' });
       } else {
-        const responseBody = await response.json().catch(() => ({}));
-        const serverMessage = responseBody?.message || 'Failed to send message.';
+        const text = await response.text();
+        console.error('Submission error:', response.status, text);
+
+        let serverMessage = 'Failed to send message.';
+        try {
+          const data = JSON.parse(text);
+          serverMessage = data.message || serverMessage;
+        } catch (e) {
+          // If response is not JSON (e.g. HTML error page), don't show raw HTML in toast
+          serverMessage = 'Submission failed. Please check the console for details.';
+        }
         showToast(serverMessage, 'error');
       }
     } catch (error: unknown) {
@@ -127,7 +136,7 @@ const Contact = ({ showToast }: ContactProps) => {
               Get in Touch
             </p>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
             {/* Left Side - Contact Form - 20-24px horizontal padding */}
             <div className="w-full min-w-0">
@@ -138,12 +147,12 @@ const Contact = ({ showToast }: ContactProps) => {
                   <label htmlFor="name" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Name <span className="text-white">*</span>
                   </label>
-                  <input 
-                    id="name" 
-                    name="name" 
-                    value={formData.name} 
-                    onChange={handleChange} 
-                    className="w-full min-h-[48px] px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-base" 
+                  <input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full min-h-[48px] px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-base"
                     placeholder="What's your good name?"
                     required
                   />
@@ -153,13 +162,13 @@ const Contact = ({ showToast }: ContactProps) => {
                   <label htmlFor="email" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Email <span className="text-white">*</span>
                   </label>
-                  <input 
-                    id="email" 
-                    name="email" 
+                  <input
+                    id="email"
+                    name="email"
                     type="email"
-                    value={formData.email} 
-                    onChange={handleChange} 
-                    className="w-full min-h-[48px] px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-base" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full min-h-[48px] px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-base"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -169,21 +178,21 @@ const Contact = ({ showToast }: ContactProps) => {
                   <label htmlFor="message" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Message <span className="text-white">*</span>
                   </label>
-                  <textarea 
-                    id="message" 
-                    name="message" 
-                    value={formData.message} 
-                    onChange={handleChange} 
-                    className="w-full min-h-[120px] px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all text-base" 
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full min-h-[120px] px-4 py-3 bg-gray-800/90 border border-gray-400 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none transition-all text-base"
                     rows={5}
                     placeholder="What you want to say?"
                     required
                   />
                 </div>
 
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting} 
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
                   className="w-full min-h-[48px] bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 active:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -216,7 +225,7 @@ const Contact = ({ showToast }: ContactProps) => {
                 <div className="absolute w-[85%] h-[85%] rounded-full border-2 border-blue-500/60 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
                 <div className="absolute w-[78%] h-[78%] rounded-full border-2 border-blue-500/70 animate-pulse" style={{ animationDelay: '0.9s' }}></div>
                 <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-blue-400 shadow-2xl z-10 bg-slate-800 aspect-square">
-                  <img 
+                  <img
                     src="/sriraj1.jpg"
                     alt="W V P S SRIRAJ"
                     className="w-full h-full object-cover"
@@ -241,7 +250,7 @@ const Contact = ({ showToast }: ContactProps) => {
 
               {/* Download Resume - min 48px, centered */}
               <div className="self-center">
-                <button 
+                <button
                   onClick={handleResumeDownload}
                   className="min-h-[48px] px-6 sm:px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 active:from-cyan-700 active:to-blue-800 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
                 >

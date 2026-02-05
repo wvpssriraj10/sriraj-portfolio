@@ -33,11 +33,17 @@ export default async function handler(req, res) {
       body: params.toString(),
     });
 
-    // Attempt to parse JSON response from FormSubmit (guarded)
-    const data = await response.json().catch(() => ({}));
+    const responseText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      // If response is not JSON, use the raw text
+      data = { message: responseText || 'Unknown error' };
+    }
 
     if (!response.ok) {
-      // Surface FormSubmit's message if present
+      console.error('FormSubmit error:', response.status, responseText);
       return res.status(response.status).json({ message: data?.message || 'Failed to send message' });
     }
 
