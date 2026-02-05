@@ -2,10 +2,13 @@ import React, { useState, useRef } from 'react';
 import { Mail, Linkedin, Github, Instagram, Download } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// EmailJS Credentials - REPLACE THESE WITH YOUR ACTUAL KEYS
+// EmailJS Credentials - Get your keys from https://dashboard.emailjs.com/
+// If EmailJS fails (e.g. 404 Account not found), form falls back to FormSubmit.co
 const SERVICE_ID = 'service_wvpssriraj';
-const TEMPLATE_ID = 'template_w5iq8rj';
-const PUBLIC_KEY = 'QI6YVIY1RUMh0e_RZ';
+const TEMPLATE_ID = 'template_pro8kiv';
+const PUBLIC_KEY = 'Ql6YVIY1RUMh0e_RZ';
+
+const FORMSUBMIT_EMAIL = 'wsriraj10@gmail.com';
 
 // ContactProps definition
 interface ContactProps {
@@ -56,23 +59,44 @@ const Contact = ({ showToast }: ContactProps) => {
         );
         showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
         setFormData({ name: '', email: '', message: '' });
-        // Reset form fields visually if needed, but controlled inputs handle it
       }
-    } catch (error: any) {
-      console.error('EmailJS Error:', error);
+    } catch (emailJsError: unknown) {
+      console.error('EmailJS Error:', emailJsError);
 
-      let errMsg = 'Failed to send message. Please try again.';
+      // Fallback: when EmailJS fails (e.g. 404 Account not found), use FormSubmit.co
+      try {
+        const form = new FormData();
+        form.append('name', formData.name);
+        form.append('email', formData.email);
+        form.append('message', formData.message);
+        form.append('_subject', `New message from ${formData.name}`);
+        form.append('_replyto', formData.email);
+        form.append('_captcha', 'false');
+        form.append('_template', 'table');
 
-      if (error?.text) {
-        // EmailJS often returns { status: 4xx, text: "Error info" }
-        errMsg = error.text;
-      } else if (error instanceof Error) {
-        errMsg = error.message;
-      } else if (typeof error === 'string') {
-        errMsg = error;
+        const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+          method: 'POST',
+          body: form,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+          setFormData({ name: '', email: '', message: '' });
+        } else {
+          const body = await res.json().catch(() => ({}));
+          showToast((body as { message?: string })?.message || 'Failed to send message.', 'error');
+        }
+      } catch (formSubmitError) {
+        console.error('FormSubmit fallback error:', formSubmitError);
+        const errMsg =
+          typeof emailJsError === 'object' && emailJsError !== null && 'text' in emailJsError
+            ? (emailJsError as { text: string }).text
+            : emailJsError instanceof Error
+              ? emailJsError.message
+              : 'Failed to send message. Please try again or email me directly.';
+        showToast(errMsg, 'error');
       }
-
-      showToast('Failed to send message: ' + errMsg, 'error');
     } finally {
       setIsSubmitting(false);
     }
