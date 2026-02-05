@@ -58,9 +58,20 @@ const Contact = ({ showToast }: ContactProps) => {
         setFormData({ name: '', email: '', message: '' });
         // Reset form fields visually if needed, but controlled inputs handle it
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error('EmailJS Error:', error);
-      const errMsg = error instanceof Error ? error.message : 'Failed to send message. Please try again.';
+
+      let errMsg = 'Failed to send message. Please try again.';
+
+      if (error?.text) {
+        // EmailJS often returns { status: 4xx, text: "Error info" }
+        errMsg = error.text;
+      } else if (error instanceof Error) {
+        errMsg = error.message;
+      } else if (typeof error === 'string') {
+        errMsg = error;
+      }
+
       showToast('Failed to send message: ' + errMsg, 'error');
     } finally {
       setIsSubmitting(false);
