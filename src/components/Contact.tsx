@@ -1,28 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Linkedin, Github, Instagram, Download } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
-// ContactProps removed as showToast is no longer used
+// EmailJS Credentials - REPLACE THESE WITH YOUR ACTUAL KEYS
+const SERVICE_ID = 'service_wvpssriraj';
+const TEMPLATE_ID = 'template_w5iq8rj';
+const PUBLIC_KEY = 'QI6YVIY1RUMh0e_RZ';
+
+// ContactProps definition
 interface ContactProps {
   showToast: (message: string, type: 'success' | 'error') => void;
 }
 
-const Contact = ({ }: ContactProps) => {
+const Contact = ({ showToast }: ContactProps) => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: '',
-    honeypot: ''
+    message: ''
   });
-
-
-
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      showToast('Please fill in all fields.', 'error');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      showToast('Please enter a valid email address.', 'error');
+      return;
+    }
+
+
+
+    setIsSubmitting(true);
+
+    try {
+      if (formRef.current) {
+        await emailjs.sendForm(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          formRef.current,
+          PUBLIC_KEY
+        );
+        showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+        setFormData({ name: '', email: '', message: '' });
+        // Reset form fields visually if needed, but controlled inputs handle it
+      }
+    } catch (error: unknown) {
+      console.error('EmailJS Error:', error);
+      const errMsg = error instanceof Error ? error.message : 'Failed to send message. Please try again.';
+      showToast('Failed to send message: ' + errMsg, 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleResumeDownload = () => {
@@ -59,17 +101,10 @@ const Contact = ({ }: ContactProps) => {
             {/* Left Side - Contact Form - 20-24px horizontal padding */}
             <div className="w-full min-w-0">
               <form
-                action="https://formsubmit.co/wsriraj10@gmail.com"
-                method="POST"
+                ref={formRef}
+                onSubmit={handleSubmit}
                 className="space-y-4 sm:space-y-6"
               >
-                {/* Configuration Fields for FormSubmit */}
-                <input type="text" name="_honey" style={{ display: 'none' }} />
-                <input type="hidden" name="_captcha" value="true" /> {/* Keep true so user can solve it if blocked */}
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} /> {/* Redirect back to same page */}
-                <input type="hidden" name="_subject" value="New submission from Portfolio" />
-
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white mb-2 text-left">
                     Your Name <span className="text-white">*</span>
@@ -119,9 +154,10 @@ const Contact = ({ }: ContactProps) => {
 
                 <button
                   type="submit"
-                  className="w-full min-h-[48px] bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
+                  disabled={isSubmitting}
+                  className="w-full min-h-[48px] bg-cyan-500 hover:bg-cyan-600 disabled:bg-cyan-500/50 active:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
 
                 {/* Social Icons - 44x44 touch targets; centered on mobile only */}
