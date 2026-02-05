@@ -137,7 +137,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
               </div>
             </motion.div>
 
-            {/* Lead Generation & Sales Dashboard - Arham World */}
+            {/* Data Analyst Intern – Arham World */}
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
@@ -145,12 +145,10 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             >
               <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
                 <span className="mr-3">📈</span>
-                Lead Generation & Sales Dashboard
+                Data Analyst Intern – Arham World
               </h3>
               <div className="text-cyan-300 text-sm mb-4 font-semibold">
-                <span>Data Analytics Intern</span>
-                <span className="mx-2">•</span>
-                <span>Arham World</span>
+                Lead Generation & Sales Dashboard
               </div>
               <p className="text-gray-200 mb-6 leading-relaxed font-semibold font-light">
                 Built a comprehensive lead generation database and an interactive sales dashboard for the Education Wing. Work included market research, data cleaning, visualization, and documentation—delivering an actionable list of 500+ qualified leads and a dynamic dashboard with insights on segments and sales performance.
