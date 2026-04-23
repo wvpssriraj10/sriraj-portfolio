@@ -21,6 +21,9 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
+  const standardCardClass =
+    'glass-card rounded-2xl p-5 sm:p-8 border border-slate-700/60 bg-slate-950/55 backdrop-blur-sm hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400/40 transition-all duration-300';
+
   return (
     <div className="night-sky-bg">
       <section className="py-12 sm:py-20 bg-transparent">
@@ -47,7 +50,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="rounded-2xl p-5 sm:p-8 bg-slate-900/75 border border-slate-700/80 backdrop-blur-md hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300"
+              className={`${standardCardClass} md:order-1`}
             >
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
                 <span className="mr-3">🏏</span>
@@ -69,7 +72,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3 pt-1">
                 <a
                   href="https://ipl-intelligence.vercel.app"
                   target="_blank"
@@ -84,7 +87,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                   href="https://github.com/wvpssriraj10/ipl-auction-player-study"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-cyan-400/50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
                 >
                   <span>💻</span>
                   <span>GitHub</span>
@@ -94,7 +97,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                   href="https://www.linkedin.com/posts/sriraj-w-v-p-s_over-the-past-few-weeks-or-so-ive-been-activity-7452984505713262592-a3AF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-cyan-400/50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
                 >
                   <span>💼</span>
                   <span>LinkedIn Post</span>
@@ -106,7 +109,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
+              className={`${standardCardClass} md:order-3`}
             >
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
                 <span className="mr-3">🏏</span>
@@ -162,7 +165,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow relative overflow-hidden"
+              className={`${standardCardClass} md:order-4 relative overflow-hidden`}
             >
               <div className="absolute top-0 right-0 bg-gradient-to-l from-cyan-500/20 to-transparent w-full h-1"></div>
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
@@ -199,7 +202,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
+              className={`${standardCardClass} md:order-2`}
             >
               <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
                 <span className="mr-3">📈</span>
@@ -256,7 +259,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
+              className={`${standardCardClass} md:order-5 md:col-span-2 md:max-w-3xl md:mx-auto`}
             >
               <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
                 <Database size={24} className="mr-3 text-cyan-300" />
