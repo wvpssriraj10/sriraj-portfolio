@@ -1,4 +1,3 @@
-import React from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -44,6 +43,65 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 gap-6 sm:gap-8"
           >
+            {/* IPL Auction Intelligence Platform */}
+            <motion.div
+              variants={cardVariants}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="rounded-2xl p-5 sm:p-8 bg-slate-900/75 border border-slate-700/80 backdrop-blur-md hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300"
+            >
+              <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
+                <span className="mr-3">🏏</span>
+                IPL Auction Intelligence Platform
+              </h3>
+
+              <p className="text-slate-300 mb-6 leading-relaxed text-sm sm:text-base font-light">
+                A full-stack data analytics console transforming 18 years of IPL ball-by-ball data into actionable scouting insights. Built a custom Python/Pandas pipeline to compute player ROI, auction efficiency, and XAI-driven role classifications, surfaced through a high-performance, JSON-driven UI with comprehensive franchise archives.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                {['Python', 'Pandas', 'JavaScript', 'HTML/CSS', 'Data Analysis', 'Chart.js'].map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-cyan-900/40 text-cyan-400 px-2.5 py-1 rounded-full text-xs sm:text-sm border border-cyan-800 break-normal"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
+                <a
+                  href="https://ipl-intelligence.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center px-4 py-2.5 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-lg text-sm font-semibold transition-colors space-x-2 shadow-lg hover:shadow-orange-600/40"
+                >
+                  <span>🌐</span>
+                  <span>View Project</span>
+                </a>
+
+                <a
+                  href="https://github.com/wvpssriraj10/ipl-auction-player-study"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
+                >
+                  <span>💻</span>
+                  <span>GitHub</span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/posts/sriraj-w-v-p-s_im-happy-to-share-that-i-have-joined-graphura-activity-7415091235025084416-ALjU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
+                >
+                  <span>💼</span>
+                  <span>LinkedIn Post</span>
+                </a>
+              </div>
+            </motion.div>
+
             {/* SRH Project */}
             <motion.div
               variants={cardVariants}
