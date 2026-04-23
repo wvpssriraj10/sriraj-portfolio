@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { Database, ExternalLink, Github } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ProjectsProps {
@@ -91,7 +91,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/posts/sriraj-w-v-p-s_im-happy-to-share-that-i-have-joined-graphura-activity-7415091235025084416-ALjU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
+                  href="https://www.linkedin.com/posts/sriraj-w-v-p-s_over-the-past-few-weeks-or-so-ive-been-activity-7452984505713262592-a3AF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
@@ -248,6 +248,73 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                 >
                   <ExternalLink size={16} />
                   <span>LinkedIn Post</span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Data Science and Analytics Intern – Graphura */}
+            <motion.div
+              variants={cardVariants}
+              whileHover={{ y: -10, transition: { duration: 0.2 } }}
+              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
+            >
+              <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
+                <Database size={24} className="mr-3 text-cyan-300" />
+                Data Science and Analytics Intern
+              </h3>
+              <div className="text-cyan-300 text-sm mb-1 font-semibold">
+                Graphura India Private Limited
+              </div>
+              <div className="text-slate-300 text-sm mb-4 font-medium">
+                January 2026 – Present
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                {['Python', 'SQL', 'Machine Learning', 'Data Visualization', 'Data Cleaning'].map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-cyan-600/20 text-cyan-300 px-2.5 py-1 rounded-full text-xs sm:text-sm border border-cyan-600/30 break-normal"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mb-2 text-white font-bold">Key Responsibilities</div>
+              <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 font-light">
+                <li>
+                  Leveraged Python and SQL to clean and structure large-scale datasets, ensuring high data integrity for accurate reporting.
+                </li>
+                <li>
+                  Designed and developed interactive dashboards to visualize complex data and extract actionable business insights.
+                </li>
+                <li>
+                  Developed and optimized Machine Learning models to enhance prediction accuracy and overall system performance.
+                </li>
+                <li>
+                  Collaborated on transforming raw data into meaningful narratives to support stakeholder decision-making.
+                </li>
+              </ul>
+
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mt-4 sm:mt-6">
+                <a
+                  href="https://www.linkedin.com/posts/sriraj-w-v-p-s_im-happy-to-share-that-i-have-joined-graphura-activity-7415091235025084416-ALjU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2.5 rounded-lg text-sm font-bold transition-colors space-x-2 bg-slate-900/60 shadow-lg hover:shadow-cyan-500/20"
+                >
+                  <ExternalLink size={16} />
+                  <span>LinkedIn Post</span>
+                </a>
+
+                <a
+                  href="/graphura-joining-letter.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-cyan-400 text-cyan-300 hover:text-white hover:border-cyan-300 px-4 py-2.5 rounded-lg text-sm font-bold transition-colors space-x-2 bg-slate-900/60 shadow-lg hover:shadow-cyan-500/20"
+                >
+                  <ExternalLink size={16} />
+                  <span>Joining Letter</span>
                 </a>
               </div>
             </motion.div>
