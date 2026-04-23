@@ -41,7 +41,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-6 sm:gap-8"
+            className="grid md:grid-cols-2 gap-6 sm:gap-8 items-start"
           >
             {/* IPL Auction Intelligence Platform */}
             <motion.div
