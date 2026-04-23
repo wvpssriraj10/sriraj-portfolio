@@ -1,16 +1,11 @@
-import { Database, ExternalLink, Github, Trophy } from 'lucide-react';
+import { Database, ExternalLink, Github } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { TravelCard } from './ui/card-7';
 
 interface ProjectsProps {
   onProjectClick: (project: string) => void;
 }
 
 const Projects = ({ onProjectClick }: ProjectsProps) => {
-  const openIplProject = () => {
-    window.open('https://ipl-intelligence.vercel.app', '_blank', 'noopener,noreferrer');
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,28 +47,66 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="rounded-2xl p-5 sm:p-8 bg-slate-900/75 border border-slate-700/80 backdrop-blur-md hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 md:order-1"
+              className="rounded-2xl p-5 sm:p-8 bg-slate-900/75 border border-slate-700/80 backdrop-blur-md hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300"
             >
-              <TravelCard
-                className="max-w-none min-h-[460px]"
-                imageUrl="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2070&auto=format&fit=crop"
-                imageAlt="IPL auction analysis dashboard theme"
-                logo={<Trophy className="h-6 w-6 text-white/80" />}
-                title="IPL Auction Intelligence"
-                location="Full-Stack Data Analytics Console"
-                overview="18 years of IPL ball-by-ball data transformed into scouting insights with ROI, auction efficiency, and explainable role classification."
-                price={18}
-                pricePeriod="Years of Data"
-                onBookNow={openIplProject}
-                aria-label="IPL Auction Intelligence featured project card"
-              />
+              <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
+                <span className="mr-3">🏏</span>
+                IPL Auction Intelligence Platform
+              </h3>
+
+              <p className="text-slate-300 mb-6 leading-relaxed text-sm sm:text-base font-light">
+                A full-stack data analytics console transforming 18 years of IPL ball-by-ball data into actionable scouting insights. Built a custom Python/Pandas pipeline to compute player ROI, auction efficiency, and XAI-driven role classifications, surfaced through a high-performance, JSON-driven UI with comprehensive franchise archives.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                {['Python', 'Pandas', 'JavaScript', 'HTML/CSS', 'Data Analysis', 'Chart.js'].map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-cyan-900/40 text-cyan-400 px-2.5 py-1 rounded-full text-xs sm:text-sm border border-cyan-800 break-normal"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
+                <a
+                  href="https://ipl-intelligence.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center px-4 py-2.5 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-lg text-sm font-semibold transition-colors space-x-2 shadow-lg hover:shadow-orange-600/40"
+                >
+                  <span>🌐</span>
+                  <span>View Project</span>
+                </a>
+
+                <a
+                  href="https://github.com/wvpssriraj10/ipl-auction-player-study"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
+                >
+                  <span>💻</span>
+                  <span>GitHub</span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/posts/sriraj-w-v-p-s_over-the-past-few-weeks-or-so-ive-been-activity-7452984505713262592-a3AF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center border border-slate-600 text-gray-300 hover:text-white hover:border-slate-500 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors space-x-2 bg-slate-950/60"
+                >
+                  <span>💼</span>
+                  <span>LinkedIn Post</span>
+                </a>
+              </div>
             </motion.div>
 
             {/* SRH Project */}
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow md:order-3"
+              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
             >
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
                 <span className="mr-3">🏏</span>
@@ -129,7 +162,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow relative overflow-hidden md:order-4"
+              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 bg-gradient-to-l from-cyan-500/20 to-transparent w-full h-1"></div>
               <h3 className="text-2xl font-extrabold text-white mb-4 flex items-center">
@@ -166,7 +199,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow md:order-2"
+              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
             >
               <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
                 <span className="mr-3">📈</span>
@@ -223,7 +256,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
             <motion.div
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow md:order-5 md:col-span-2 md:max-w-3xl md:mx-auto"
+              className="glass-card rounded-2xl p-5 sm:p-8 hover:shadow-2xl hover:shadow-cyan-500/10 transition-shadow"
             >
               <h3 className="text-2xl font-extrabold text-white mb-2 flex items-center">
                 <Database size={24} className="mr-3 text-cyan-300" />
