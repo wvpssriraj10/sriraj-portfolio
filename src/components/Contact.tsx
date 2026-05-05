@@ -102,15 +102,10 @@ const Contact = ({ showToast }: ContactProps) => {
     }
   };
 
-  const handleResumeDownload = () => {
-    const exportDocxUrl = 'https://docs.google.com/document/d/1LX9UQ-BgZbzr56FdvAk0pohqmY_lUVWL/export?format=docx';
-    const link = document.createElement('a');
-    link.href = exportDocxUrl;
-    link.download = 'Sriraj_Resume.docx';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    showToast('Downloading latest resume (DOCX)...', 'success');
+  const handleResumeView = () => {
+    const viewResumeUrl = 'https://docs.google.com/document/d/1LX9UQ-BgZbzr56FdvAk0pohqmY_lUVWL/view';
+    window.open(viewResumeUrl, '_blank', 'noopener,noreferrer');
+    showToast('Opening resume in a new tab...', 'success');
   };
 
   const socialLinks = [
@@ -245,14 +240,14 @@ const Contact = ({ showToast }: ContactProps) => {
                 </div>
               </div>
 
-              {/* Download Resume - min 48px, centered */}
+              {/* View Resume - min 48px, centered */}
               <div className="self-center">
                 <button
-                  onClick={handleResumeDownload}
+                  onClick={handleResumeView}
                   className="min-h-[48px] px-6 sm:px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 active:from-cyan-700 active:to-blue-800 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
                 >
                   <Download size={20} />
-                  <span>Download Resume</span>
+                  <span>View Resume</span>
                 </button>
               </div>
             </div>

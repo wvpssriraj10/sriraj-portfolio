@@ -120,6 +120,15 @@ const About = () => {
                 </div>
               </motion.div>
             </div>
+
+            <div className="mt-8 sm:mt-10 flex justify-center">
+              <a
+                href="/cricket.html"
+                className="min-h-[48px] inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700 text-white rounded-lg font-semibold transition-all duration-300 shadow-lg"
+              >
+                Cricket Portfolio
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

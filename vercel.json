@@ -5,6 +5,14 @@
       "destination": "/api/contact.js"
     },
     {
+      "source": "/cricket.html",
+      "destination": "/cricket.html"
+    },
+    {
+      "source": "/cricket",
+      "destination": "/cricket.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Home from './components/Home';
 import About from './components/About';
 import Projects from './components/Projects';
-import CricketPortfolio from './components/CricketPortfolio';
 import Credentials from './components/Credentials';
 import Contact from './components/Contact';
 import SrhProject from './components/SrhProject';
@@ -40,7 +39,7 @@ function App() {
       setIsScrolled(window.scrollY > 50);
 
       // Update current section based on scroll position
-      const sections = ['home', 'about', 'cricket-portfolio', 'projects', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'projects', 'certifications', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -95,7 +94,6 @@ function App() {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'cricket-portfolio', label: 'Cricket Portfolio' },
     { id: 'projects', label: 'Projects' },
     { id: 'certifications', label: 'Certifications' },
     { id: 'contact', label: 'Contact' }
@@ -235,10 +233,6 @@ function App() {
 
         <section id="about">
           <About />
-        </section>
-
-        <section id="cricket-portfolio">
-          <CricketPortfolio />
         </section>
 
         <section id="projects">
