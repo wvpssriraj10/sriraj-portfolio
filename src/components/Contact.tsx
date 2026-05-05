@@ -103,7 +103,7 @@ const Contact = ({ showToast }: ContactProps) => {
   };
 
   const handleResumeView = () => {
-    const viewResumeUrl = 'https://docs.google.com/document/d/1LX9UQ-BgZbzr56FdvAk0pohqmY_lUVWL/view';
+    const viewResumeUrl = 'https://docs.google.com/document/d/1vLF8Xghaiuv_cexwUfYlmyeycqWx0fTt/edit';
     window.open(viewResumeUrl, '_blank', 'noopener,noreferrer');
     showToast('Opening resume in a new tab...', 'success');
   };
