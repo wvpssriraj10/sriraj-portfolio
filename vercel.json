@@ -1,4 +1,6 @@
 {
+  "buildCommand": "echo 'Static HTML site, skipping build'",
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/api/contact",
