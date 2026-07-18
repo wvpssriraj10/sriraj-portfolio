@@ -5,7 +5,7 @@ const certificates = [
     title: 'Hedera Certified Foundation (HCF)',
     issuer: 'Hedera Hashgraph (Hedera Certification Program)',
     description: 'Hedera Certified Foundation Certificate',
-    imageUrl: '/HCF CERTIFICATE.jpg',
+    imageUrl: '/assets/images/HCF CERTIFICATE.jpg',
     brief: 'Covers core network foundations including the Hashgraph DAG architecture, Gossip about Gossip protocol, Virtual Voting, and asynchronous Byzantine Fault Tolerance (aBFT) consensus. Validates understanding of network finality, node roles (Consensus vs. Mirror nodes), account structure, and transaction fees.',
     linkedinUrl: ''
   },
@@ -14,7 +14,7 @@ const certificates = [
     title: 'Hedera Certified Developer Associate (HCDA)',
     issuer: 'Hedera Hashgraph (Hedera Certification Program)',
     description: 'Hedera Certified Developer Associate Certificate',
-    imageUrl: '/HCDA CERTIFICATE.jpg',
+    imageUrl: '/assets/images/HCDA CERTIFICATE.jpg',
     brief: 'Focuses on programmatic application development using the Hedera JavaScript SDK. Covers multi-signature configurations, key rotation, native asset engineering via the Hedera Token Service (HTS), topic messaging via the Hedera Consensus Service (HCS), and deploying EVM-compatible Solidity smart contracts.',
     linkedinUrl: ''
   },
@@ -23,7 +23,7 @@ const certificates = [
     title: 'PowerBI Workshop Certificate',
     issuer: 'OfficeMaster PowerBI Workshop - Creating AI-Powered interactive dashboards',
     description: 'PowerBI Workshop Certificate from OfficeMaster',
-    imageUrl: '/PowerBI Workshop Certificate.jpg',
+    imageUrl: '/assets/images/PowerBI Workshop Certificate.jpg',
     brief: 'This "Certificate of Completion" from OfficeMaster confirms the successful participation in a "PowerBI Workshop," issued on March 30th, 2025. The certificate explicitly states that the holder "can create AI-Powered interactive dashboards in PowerBI in under 30 mins." This demonstrates practical skills in using PowerBI, a leading business intelligence tool, for data visualization and creating interactive reports, especially with an emphasis on efficiency and potentially AI integration for enhanced insights.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_powerbi-dataanalytics-businessintelligence-activity-7312026644481773568-xLJA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -32,7 +32,7 @@ const certificates = [
     title: 'Deloitte Data Analytics Job Simulation',
     issuer: 'Data analysis and forensic technology simulation',
     description: 'Deloitte Data Analytics Job Simulation Certificate',
-    imageUrl: '/Deloitte data analyst job simulation.jpg',
+    imageUrl: '/assets/images/Deloitte data analyst job simulation.jpg',
     brief: 'This "Certificate of Completion" from Deloitte indicates participation in a "Data Analytics Job Simulation." The program, completed in March 2025, involved practical tasks in "Data analysis" and "Forensic technology." This simulation provides hands-on experience with real-world data challenges and the methodologies used by professional services firms like Deloitte in data analytics and forensic investigations. It suggests proficiency in data interpretation and application in a business context.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_dataanalytics-forensictechnology-continuouslearning-activity-7311460935464800256-8MEe?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -41,7 +41,7 @@ const certificates = [
     title: 'IOC Professional Sport Management',
     issuer: 'International Olympic Committee certificate in Professional Sport Management',
     description: 'IOC Professional Sport Management Certificate',
-    imageUrl: '/Professional Sport Management-Certificate.jpg',
+    imageUrl: '/assets/images/Professional Sport Management-Certificate.jpg',
     brief: 'This "Certificate of Achievement" from the International Olympic Committee (IOC) signifies the successful completion of a program focused on "Professional Sport Management." This certification likely covers key aspects of managing sports organizations, events, and athletes, including governance, marketing, finance, and operations within the sports industry. It demonstrates a foundational understanding of the administrative and strategic elements critical for a career in sports management.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_sportsmanagement-ioc-athlete365-activity-7309998420306337792-dRc0?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -50,7 +50,7 @@ const certificates = [
     title: 'Cricket Analytics Workshop',
     issuer: 'Mad About Sports 5-day workshop on cricket analytics and data-driven decision making',
     description: 'Cricket Analytics Workshop Certificate',
-    imageUrl: '/MAS_Certificate.jpg',
+    imageUrl: '/assets/images/MAS_Certificate.jpg',
     brief: 'This "Certificate of Completion" from Mad About Sports is for a "5-days workshop on Cricket Analytics," issued on March 23rd, 2025. The certificate outlines key skills gained: "Analyze and interpret cricket match data using professional analytics techniques," "Apply data-driven decision-making to select the best XI for India\'s next match," and "Utilize a step-by-step framework to pursue a part-time or full-time career in cricket analytics." This showcases specialized analytical skills applied to the domain of sports, specifically cricket.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_cricketanalytics-sportsdata-iplanalysis-activity-7309584706583310336-wDhW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -59,7 +59,7 @@ const certificates = [
     title: 'Commonwealth Bank Data Science Simulation',
     issuer: 'Commonwealth Bank Introduction to Data Science Job Simulation',
     description: 'Commonwealth Bank Data Science Job Simulation',
-    imageUrl: '/introduction to data science job simulation.jpg',
+    imageUrl: '/assets/images/introduction to data science job simulation.jpg',
     brief: 'This "Certificate of Completion" from Commonwealth Bank, issued via Forage on March 17th, 2025, is for an "Introduction to Data Science Job Simulation." During the program, practical tasks were completed in "Data Aggregation and Analysis," "Data Anonymisation," "Propose Data Analysis Approaches," and "Designing a Database." This simulation provides foundational exposure to data science workflows within a financial institution context, focusing on data handling, privacy, and analytical planning.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_commonwealth-bank-introduction-to-data-science-activity-7307438109439229953-wAkr?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -68,7 +68,7 @@ const certificates = [
     title: 'NVIDIA CUDA Python Certificate',
     issuer: 'NVIDIA Deep Learning Institute - Fundamentals of Accelerated Computing with CUDA Python',
     description: 'NVIDIA CUDA Python Certificate',
-    imageUrl: '/NVIDIA-Deep Learning Institute certification.jpg',
+    imageUrl: '/assets/images/NVIDIA-Deep Learning Institute certification.jpg',
     brief: 'This "Certificate of Competency" from NVIDIA, issued on February 25th, 2025, acknowledges "demonstrating competence in the completion of Fundamentals of Accelerated Computing with CUDA Python." This highly specialized certification indicates proficiency in using NVIDIA\'s CUDA platform and Python for parallel computing, which is crucial for high-performance computing, data science, and artificial intelligence applications. It highlights expertise in optimizing code for GPUs.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_nvidia-deeplearning-cuda-activity-7303453602331734017-sD4i?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -77,7 +77,7 @@ const certificates = [
     title: 'Microsoft Excel Certificate',
     issuer: 'Coursera Project Network - Getting Started with Microsoft Excel',
     description: 'Microsoft Excel Certificate from Coursera',
-    imageUrl: '/Getting Started with Microsoft Excel certificate Coursera.jpg',
+    imageUrl: '/assets/images/Getting Started with Microsoft Excel certificate Coursera.jpg',
     brief: 'This "Project Certificate" from Coursera Project Network, dated March 6th, 2025, signifies the successful completion of "Getting Started with Microsoft Excel." This certification validates foundational skills in using Microsoft Excel, an essential tool for data organization, analysis, and visualization in various professional settings.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_excel-dataanalysis-learning-activity-7303450812817489920-4naH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -86,7 +86,7 @@ const certificates = [
     title: 'AWS Solutions Architecture Job Simulation',
     issuer: 'Amazon Web Services Solutions Architecture Job Simulation',
     description: 'AWS Solutions Architecture Certificate',
-    imageUrl: '/AWS Solutions Architecture Job Simulation Certification of Completion.jpg',
+    imageUrl: '/assets/images/AWS Solutions Architecture Job Simulation Certification of Completion.jpg',
     brief: 'This "Certificate of Completion" from AWS, issued via Forage on March 3rd, 2025, is for a "Solutions Architecture Job Simulation." The practical task involved "Designing a simple, scalable, hosting architecture." This simulation provides practical experience in understanding and designing cloud-based solutions using AWS services, a critical skill for roles involving cloud infrastructure and system design.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_i-just-completed-amazon-web-services-aws-activity-7302321138938916865-rgUA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   },
@@ -95,7 +95,7 @@ const certificates = [
     title: 'Business Analysis & Process Management Certification',
     issuer: 'Coursera - Business Analysis & Process Management',
     description: 'Business Analysis & Process Management Certification',
-    imageUrl: '/Business Analysis & Process Management Certification.jpg',
+    imageUrl: '/assets/images/Business Analysis & Process Management Certification.jpg',
     brief: '',
     linkedinUrl: ''
   },
@@ -104,7 +104,7 @@ const certificates = [
     title: 'Software Engineering Job Simulation Certificate',
     issuer: 'Forage - Software Engineering Job Simulation',
     description: 'Software Engineering Job Simulation Certificate',
-    imageUrl: '/Software Engineering Job Simulation Certificate.jpg',
+    imageUrl: '/assets/images/Software Engineering Job Simulation Certificate.jpg',
     brief: 'This "Certificate of Completion" from Electronic Arts (EA), issued via Forage on March 2nd, 2025, is for a "Software Engineering Job Simulation." Practical tasks completed include "Write a Feature Proposal," "Create a Game Object Class," "Improve Inventory System," and "Live Bugfix." This simulation offers hands-on experience with core software development practices within the context of game development, covering aspects from design to debugging.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_softwareengineering-gamedevelopment-electronicarts-activity-7301895650001006592-Kr84?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
   }
