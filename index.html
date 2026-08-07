@@ -329,7 +329,8 @@
         <button id="close-cert-modal" class="text-gray-400 hover:text-white rounded-lg flex-shrink-0 text-2xl">✖</button>
       </div>
       <p id="modal-issuer" class="text-cyan-400 font-semibold text-lg mb-6"></p>
-      <img id="modal-image" src="" alt="" class="w-full max-w-full h-auto object-contain rounded-lg border border-slate-600 mb-6" />
+      <img id="modal-image" src="" alt="" class="w-full max-w-full h-auto object-contain rounded-lg border border-slate-600 mb-6 hidden" />
+      <iframe id="modal-pdf" src="" class="w-full h-[60vh] rounded-lg border border-slate-600 mb-6 hidden" title="Certificate PDF"></iframe>
       <p id="modal-brief" class="text-gray-200 text-sm sm:text-base text-center whitespace-pre-line leading-relaxed mb-6"></p>
       <div class="flex flex-col items-center gap-3">
         <button id="download-cert-btn" class="min-h-[48px] w-full sm:w-auto inline-flex items-center justify-center bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium">Download Certificate</button>

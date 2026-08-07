@@ -1,6 +1,33 @@
 // Certificate data
 const certificates = [
   {
+    id: 'nestgen-sustainability-marketing',
+    title: 'NESTGEN Digital & Marketing Masterclass - Purpose-Driven & Sustainability Marketing',
+    issuer: 'Nestlé',
+    description: 'Masterclass certification from the NESTGEN E-Learning Festival 2026 focusing on purpose-driven marketing.',
+    imageUrl: '/assets/images/nestgen-sustainability-marketing.pdf',
+    brief: 'This certificate was awarded for completing the NESTGEN Digital & Marketing masterclass on 21st July 2026. The curriculum focused on unlocking specific skills in Purpose-Driven & Sustainability Marketing.',
+    linkedinUrl: 'https://lnkd.in/p/ggrmSxcr'
+  },
+  {
+    id: 'nestgen-ai-social-commerce',
+    title: 'NESTGEN Digital & Marketing Masterclass - Social Commerce, AI & Data',
+    issuer: 'Nestlé',
+    description: 'Masterclass certification from the NESTGEN E-Learning Festival 2026 focusing on AI, data, and brand strategy.',
+    imageUrl: '/assets/images/nestgen-ai-social-commerce.pdf',
+    brief: 'This certificate was awarded for completing the NESTGEN Digital & Marketing masterclass on 21st July 2026. The curriculum focused on unlocking skills in social commerce, AI & data, and culture-driven brand strategy.',
+    linkedinUrl: 'https://lnkd.in/p/ggrmSxcr'
+  },
+  {
+    id: 'oracle-oci-foundations-2025',
+    title: 'Oracle Cloud Infrastructure 2025 Certified Foundations Associate',
+    issuer: 'Oracle / Oracle University',
+    description: 'Foundations Associate certification for Oracle Cloud Infrastructure 2025.',
+    imageUrl: '/assets/images/eCertificate Oracle Certified Foundations Associate.pdf',
+    brief: 'This eCertificate officially recognizes the achievement of the Oracle Cloud Infrastructure 2025 Certified Foundations Associate designation. It was awarded on March 20, 2026.',
+    linkedinUrl: ''
+  },
+  {
     id: 'hedera-hcf',
     title: 'Hedera Certified Foundation (HCF)',
     issuer: 'Hedera Hashgraph (Hedera Certification Program)',
@@ -133,8 +160,11 @@ const mainContent = document.querySelector('main');
 function initCertificates() {
   certificatesGrid.innerHTML = certificates.map(cert => `
     <div class="bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:transform hover:scale-105 group" data-cert-id="${cert.id}">
-      <div class="h-48 overflow-hidden">
-        <img src="${cert.imageUrl}" alt="${cert.title} certificate" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+      <div class="h-48 overflow-hidden bg-slate-900 flex items-center justify-center">
+        ${cert.imageUrl.toLowerCase().endsWith('.pdf')
+          ? `<div class="text-cyan-400 flex flex-col items-center p-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-2 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg><span class="text-xs font-semibold uppercase tracking-wider text-gray-300 group-hover:text-cyan-300 transition-colors">View PDF</span></div>`
+          : `<img src="${cert.imageUrl}" alt="${cert.title} certificate" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />`
+        }
       </div>
       <div class="p-4">
         <h3 class="text-white font-semibold text-sm mb-2 line-clamp-2">${cert.title}</h3>
@@ -158,8 +188,22 @@ function openCertificateModal(cert) {
   selectedCertificate = cert;
   document.getElementById('modal-title').textContent = cert.title;
   document.getElementById('modal-issuer').textContent = cert.issuer;
-  document.getElementById('modal-image').src = cert.imageUrl;
-  document.getElementById('modal-image').alt = cert.title;
+  
+  const imgElement = document.getElementById('modal-image');
+  const pdfElement = document.getElementById('modal-pdf');
+  
+  if (cert.imageUrl.toLowerCase().endsWith('.pdf')) {
+    imgElement.classList.add('hidden');
+    pdfElement.src = cert.imageUrl;
+    pdfElement.classList.remove('hidden');
+  } else {
+    pdfElement.classList.add('hidden');
+    pdfElement.src = '';
+    imgElement.src = cert.imageUrl;
+    imgElement.alt = cert.title;
+    imgElement.classList.remove('hidden');
+  }
+  
   document.getElementById('modal-brief').textContent = cert.brief || '';
   
   const linkedinLink = document.getElementById('linkedin-link');
