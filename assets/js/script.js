@@ -5,7 +5,7 @@ const certificates = [
     title: 'NESTGEN Digital & Marketing Masterclass - Purpose-Driven & Sustainability Marketing',
     issuer: 'Nestlé',
     description: 'Masterclass certification from the NESTGEN E-Learning Festival 2026 focusing on purpose-driven marketing.',
-    imageUrl: '/assets/images/nestgen-sustainability-marketing.pdf',
+    imageUrl: '/assets/images/nestgen-sustainability-marketing.jpg',
     brief: 'This certificate was awarded for completing the NESTGEN Digital & Marketing masterclass on 21st July 2026. The curriculum focused on unlocking specific skills in Purpose-Driven & Sustainability Marketing.',
     linkedinUrl: 'https://lnkd.in/p/ggrmSxcr'
   },
@@ -14,7 +14,7 @@ const certificates = [
     title: 'NESTGEN Digital & Marketing Masterclass - Social Commerce, AI & Data',
     issuer: 'Nestlé',
     description: 'Masterclass certification from the NESTGEN E-Learning Festival 2026 focusing on AI, data, and brand strategy.',
-    imageUrl: '/assets/images/nestgen-ai-social-commerce.pdf',
+    imageUrl: '/assets/images/nestgen-ai-social-commerce.jpg',
     brief: 'This certificate was awarded for completing the NESTGEN Digital & Marketing masterclass on 21st July 2026. The curriculum focused on unlocking skills in social commerce, AI & data, and culture-driven brand strategy.',
     linkedinUrl: 'https://lnkd.in/p/ggrmSxcr'
   },
@@ -23,7 +23,7 @@ const certificates = [
     title: 'Oracle Cloud Infrastructure 2025 Certified Foundations Associate',
     issuer: 'Oracle / Oracle University',
     description: 'Foundations Associate certification for Oracle Cloud Infrastructure 2025.',
-    imageUrl: '/assets/images/eCertificate Oracle Certified Foundations Associate.pdf',
+    imageUrl: '/assets/images/eCertificate Oracle Certified Foundations Associate.jpg',
     brief: 'This eCertificate officially recognizes the achievement of the Oracle Cloud Infrastructure 2025 Certified Foundations Associate designation. It was awarded on March 20, 2026.',
     linkedinUrl: ''
   },
