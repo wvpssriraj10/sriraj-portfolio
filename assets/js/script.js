@@ -28,6 +28,15 @@ const certificates = [
     linkedinUrl: ''
   },
   {
+    id: 'oracle-agentic-ai-foundations',
+    title: 'Oracle Certified Foundations Associate – Agentic AI',
+    issuer: 'Oracle',
+    description: 'Official Oracle certification validating foundational expertise in Agentic AI principles, autonomous workflows, and AI agent architectures.',
+    imageUrl: '/assets/images/eCertificate Oracle Agentic AI Certified Foundations Associate.png',
+    brief: 'This certification demonstrates a solid foundation in the core concepts of Agentic AI, focusing on how autonomous agents reason, plan, and execute tasks to solve complex problems. Through this program, I gained key insights into agent design patterns, decision-making frameworks, multi-agent coordination, and integrating agentic workflows into modern cloud applications to automate intelligent end-to-end processes.',
+    linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_oracle-agentic-ai-certified-foundations-associate-activity-7499715059510571008-3IU9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
+  },
+  {
     id: 'hedera-hcf',
     title: 'Hedera Certified Foundation (HCF)',
     issuer: 'Hedera Hashgraph (Hedera Certification Program)',
@@ -383,15 +392,6 @@ async function handleContactSubmit(e) {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-   {
-     id: 'oracle-agentic-ai-foundations',
-     title: 'Oracle Certified Foundations Associate – Agentic AI',
-     issuer: 'Oracle',
-     description: 'Official Oracle certification validating foundational expertise in Agentic AI principles, autonomous workflows, and AI agent architectures.',
-     imageUrl: '/assets/images/eCertificate Oracle Agentic AI Certified Foundations Associate.png',
-     brief: 'This certification demonstrates a solid foundation in the core concepts of Agentic AI, focusing on how autonomous agents reason, plan, and execute tasks to solve complex problems. Through this program, I gained key insights into agent design patterns, decision-making frameworks, multi-agent coordination, and integrating agentic workflows into modern cloud applications to automate intelligent end-to-end processes.',
-     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_oracle-agentic-ai-certified-foundations-associate-activity-7499715059510571008-3IU9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
-   },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
