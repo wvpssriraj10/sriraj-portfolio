@@ -367,32 +367,27 @@ async function handleContactSubmit(e) {
   submitSpinner.classList.remove('hidden');
   
   try {
-    // Always use FormSubmit AJAX directly — no serverless proxy needed
-    const form = new FormData();
-    form.append('name', formData.name);
-    form.append('email', formData.email);
-    form.append('message', formData.message);
-    form.append('_subject', `New message from ${formData.name}`);
-    form.append('_replyto', formData.email);
-    form.append('_captcha', 'false');
-    form.append('_template', 'table');
-
-    const response = await fetch('https://formsubmit.co/ajax/wsriraj10@gmail.com', {
+    // Web3Forms — no activation required, works instantly
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      body: form,
-      headers: { 'Accept': 'application/json' }
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'e0fe8135-e0ae-48ca-8ba0-db2728e4164c',
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        subject: `New message from ${formData.name}`
+      })
     });
 
-    const responseText = await response.text();
-    let data;
-    try { data = JSON.parse(responseText); } catch { data = {}; }
+    const data = await response.json();
 
-    if (response.ok && data.success !== 'false') {
+    if (data.success) {
       showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
       contactForm.reset();
     } else {
-      console.error('FormSubmit error:', response.status, responseText);
-      throw new Error(data?.message || `FormSubmit returned ${response.status}`);
+      console.error('Web3Forms error:', data);
+      throw new Error(data?.message || 'Failed to send message');
     }
   } catch (error) {
     console.error('Contact form error:', error);
