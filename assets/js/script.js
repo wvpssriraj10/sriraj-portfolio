@@ -404,16 +404,9 @@ async function handleContactSubmit(e) {
   }
 }
 
-// Handle resume download
+// Handle resume view
 function handleResumeDownload() {
-  const exportDocxUrl = 'https://docs.google.com/document/d/1LX9UQ-BgZbzr56FdvAk0pohqmY_lUVWL/export?format=docx';
-  const link = document.createElement('a');
-  link.href = exportDocxUrl;
-  link.download = 'Sriraj_Resume.docx';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  showToast('Downloading latest resume (DOCX)...', 'success');
+  window.open('/assets/docs/wvpssriraj resume DA (1).pdf', '_blank');
 }
 
 // Handle certificate download
