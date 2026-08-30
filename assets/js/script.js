@@ -367,51 +367,35 @@ async function handleContactSubmit(e) {
   submitSpinner.classList.remove('hidden');
   
   try {
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    let response;
-    
-    if (isLocal) {
-      const form = new FormData();
-      form.append('name', formData.name);
-      form.append('email', formData.email);
-      form.append('message', formData.message);
-      form.append('_subject', `New message from ${formData.name}`);
-      form.append('_replyto', formData.email);
-      form.append('_captcha', 'false');
-      form.append('_template', 'table');
-      
-      response = await fetch('https://formsubmit.co/ajax/wsriraj10@gmail.com', {
-        method: 'POST',
-        body: form,
-        headers: { 'Accept': 'application/json' }
-      });
-    } else {
-      response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
-        })
-      });
-    }
-    
-    if (response.ok) {
+    // Always use FormSubmit AJAX directly — no serverless proxy needed
+    const form = new FormData();
+    form.append('name', formData.name);
+    form.append('email', formData.email);
+    form.append('message', formData.message);
+    form.append('_subject', `New message from ${formData.name}`);
+    form.append('_replyto', formData.email);
+    form.append('_captcha', 'false');
+    form.append('_template', 'table');
+
+    const response = await fetch('https://formsubmit.co/ajax/wsriraj10@gmail.com', {
+      method: 'POST',
+      body: form,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    const responseText = await response.text();
+    let data;
+    try { data = JSON.parse(responseText); } catch { data = {}; }
+
+    if (response.ok && data.success !== 'false') {
       showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
       contactForm.reset();
     } else {
-      let errMsg = 'Failed to send message.';
-      try {
-        const data = await response.json();
-        if (data?.message) errMsg = data.message;
-      } catch {}
-      throw new Error(errMsg);
+      console.error('FormSubmit error:', response.status, responseText);
+      throw new Error(data?.message || `FormSubmit returned ${response.status}`);
     }
   } catch (error) {
+    console.error('Contact form error:', error);
     showToast('Failed to send message. Please try again or contact me directly.', 'error');
   } finally {
     submitBtn.disabled = false;
