@@ -1,6 +1,15 @@
 // Certificate data
 const certificates = [
   {
+    id: 'usc-mathematics-ai-datascience',
+    title: 'The Role of Mathematics in AI and Data Science',
+    issuer: 'University of Southern California (USC India)',
+    description: 'Webinar on foundational mathematical principles in AI and Data Science',
+    imageUrl: '/assets/images/USC india certificate.jpg',
+    brief: 'Attended an insightful webinar hosted by the University of Southern California (USC India) exploring foundational mathematical principles and their essential role in shaping modern Artificial Intelligence and Data Science.',
+    linkedinUrl: 'https://lnkd.in/p/dB8WNC5c'
+  },
+  {
     id: 'nestgen-sustainability-marketing',
     title: 'NESTGEN Digital & Marketing Masterclass - Purpose-Driven & Sustainability Marketing',
     issuer: 'Nestlé',
@@ -143,24 +152,6 @@ const certificates = [
     imageUrl: '/assets/images/Software Engineering Job Simulation Certificate.jpg',
     brief: 'This "Certificate of Completion" from Electronic Arts (EA), issued via Forage on March 2nd, 2025, is for a "Software Engineering Job Simulation." Practical tasks completed include "Write a Feature Proposal," "Create a Game Object Class," "Improve Inventory System," and "Live Bugfix." This simulation offers hands-on experience with core software development practices within the context of game development, covering aspects from design to debugging.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_softwareengineering-gamedevelopment-electronicarts-activity-7301895650001006592-Kr84?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
-  },
-  {
-    id: 'usc-mathematics-ai-datascience',
-    title: 'The Role of Mathematics in AI and Data Science',
-    issuer: 'University of Southern California (USC India)',
-    description: 'Webinar on foundational mathematical principles in AI and Data Science',
-    imageUrl: '/assets/images/USC india certificate.jpg',
-    brief: 'Attended an insightful webinar hosted by the University of Southern California (USC India) exploring foundational mathematical principles and their essential role in shaping modern Artificial Intelligence and Data Science.',
-    linkedinUrl: 'https://lnkd.in/p/dB8WNC5c'
-  },
-  {
-    id: 'yuva-intern-datascience',
-    title: 'Virtual Data Science Explorer Intern Certificate',
-    issuer: 'Yuva Intern by Henry Harvin',
-    description: 'Virtual internship on practical Data Science concepts and EDA',
-    imageUrl: '/assets/images/YuvaIntern Internship Certificate.pdf',
-    brief: 'Completed a virtual internship program focusing on practical Data Science concepts, exploratory data analysis, and professional project development workflows.',
-    linkedinUrl: 'https://lnkd.in/p/dmu-6TJe'
   }
 ];
 
