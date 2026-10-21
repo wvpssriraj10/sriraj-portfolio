@@ -647,6 +647,10 @@ function init() {
     if (e.key === 'Escape' && !lightboxModal.classList.contains('hidden')) {
       closeLightbox();
     }
+    // Also close certificate modal on Escape
+    if (e.key === 'Escape' && !certificateModal.classList.contains('hidden')) {
+      closeCertificateModal();
+    }
   });
   
   // SRH project - removed click handler since it's now an <a> tag (Issue #8)
