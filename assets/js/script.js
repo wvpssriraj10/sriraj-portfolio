@@ -237,7 +237,7 @@ function initCertificates() {
   if (certTabsContainer) {
     certTabsContainer.innerHTML = certCategories.map((cat, i) => `
       <button class="cert-tab px-4 py-2 text-sm font-medium rounded-full transition-all ${
-        i === 0 ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white'
+        i === 0 ? 'bg-white/8 text-white rounded-full border-b-2 border-white/50' : 'text-gray-400 rounded-full px-4 py-2 text-sm font-medium hover:text-gray-300'
       }" data-category="${cat}" aria-selected="${i === 0}" role="tab">
         ${cat}
       </button>
@@ -248,12 +248,12 @@ function initCertificates() {
         currentCertCategory = btn.dataset.category;
         certShowMore = false;
         certTabsContainer.querySelectorAll('.cert-tab').forEach(b => {
-          b.classList.remove('bg-cyan-500', 'text-white');
-          b.classList.add('bg-slate-800', 'text-gray-300');
+          b.classList.remove('bg-white/8', 'text-white', 'border-b-2', 'border-white/50');
+          b.classList.add('text-gray-400');
           b.setAttribute('aria-selected', 'false');
         });
-        btn.classList.remove('bg-slate-800', 'text-gray-300');
-        btn.classList.add('bg-cyan-500', 'text-white');
+        btn.classList.remove('text-gray-400');
+        btn.classList.add('bg-white/8', 'text-white', 'border-b-2', 'border-white/50');
         btn.setAttribute('aria-selected', 'true');
         renderCertificates();
       });
@@ -290,11 +290,11 @@ function renderCertificates() {
           ? `<div class="text-cyan-400 flex flex-col items-center p-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-2 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg><span class="text-xs font-semibold uppercase tracking-wider text-gray-300 group-hover:text-cyan-300 transition-colors">View PDF</span></div>`
           : `<img src="${cert.imageUrl}" alt="${cert.title} certificate" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 cursor-zoom-in" loading="lazy" data-lightbox="${cert.imageUrl}" />`
         }
-        <div class="absolute bottom-2 left-2 right-2 text-xs text-gray-400 bg-black/60 px-2 py-1 rounded text-center">${cert.date}</div>
       </div>
-      <div class="p-4">
-        <h3 class="text-white font-semibold text-sm mb-2 line-clamp-2">${cert.title}</h3>
-        <p class="text-gray-400 text-xs line-clamp-1">${cert.issuer} | ${cert.category}</p>
+      <div class="p-4 flex flex-col">
+        <p class="text-gray-400 text-xs text-center mb-2">${cert.date}</p>
+        <h3 class="text-white font-semibold text-sm line-clamp-2 flex-1">${cert.title}</h3>
+        <p class="text-gray-400 text-xs mt-auto">${cert.issuer} | ${cert.category}</p>
       </div>
     </div>
   `).join('');
@@ -434,28 +434,64 @@ function scrollToSection(sectionId) {
   }
 }
 
-// Update active navigation
-function updateActiveNav() {
+// Update active navigation using IntersectionObserver
+function updateActiveNavWithObserver() {
+  // Set all nav links to inactive initially
   navLinks.forEach(link => {
-    const section = link.getAttribute('data-section');
-    if (section === currentSection) {
-      link.classList.remove('text-gray-300', 'hover:text-white');
-      link.classList.add('text-cyan-400');
-    } else {
-      link.classList.remove('text-cyan-400');
-      link.classList.add('text-gray-300', 'hover:text-white');
-    }
+    link.classList.remove('text-cyan-400');
+    link.classList.add('text-gray-300', 'hover:text-white');
+    link.removeAttribute('aria-current');
+  });
+  mobileNavLinks.forEach(link => {
+    link.classList.remove('text-cyan-400');
+    link.classList.add('text-gray-300', 'hover:text-white');
+    link.removeAttribute('aria-current');
   });
   
-  mobileNavLinks.forEach(link => {
-    const section = link.getAttribute('data-section');
-    if (section === currentSection) {
-      link.classList.remove('text-gray-300', 'hover:text-white');
-      link.classList.add('text-cyan-400');
-    } else {
-      link.classList.remove('text-cyan-400');
-      link.classList.add('text-gray-300', 'hover:text-white');
-    }
+  // Create IntersectionObserver for each section
+  const sections = ['home', 'about', 'cricket-portfolio', 'projects', 'certifications', 'contact'];
+  const navbarHeight = 64; // Fixed navbar height
+  
+  sections.forEach(sectionId => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Get the corresponding nav link
+            const navLink = document.querySelector(`[data-section="${sectionId}"]`);
+            if (navLink) {
+              // Deactivate all links first
+              navLinks.forEach(l => {
+                l.classList.remove('text-cyan-400');
+                l.classList.add('text-gray-300', 'hover:text-white');
+                l.removeAttribute('aria-current');
+              });
+              mobileNavLinks.forEach(l => {
+                l.classList.remove('text-cyan-400');
+                l.classList.add('text-gray-300', 'hover:text-white');
+                l.removeAttribute('aria-current');
+              });
+              
+              // Activate this link
+              navLink.classList.add('text-cyan-400');
+              navLink.setAttribute('aria-current', 'page');
+              mobileNavLink.classList.add('text-cyan-400');
+              mobileNavLink.setAttribute('aria-current', 'page');
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: `-${navbarHeight}px 0px`, // Account for sticky navbar
+        threshold: 0.5
+      }
+    );
+    
+    observer.observe(element);
   });
 }
 
@@ -472,23 +508,7 @@ function handleScroll() {
     navbar.classList.remove('bg-slate-900/95', 'backdrop-blur-md', 'border-b', 'border-slate-700');
   }
   
-  // Update current section
-  const sections = ['home', 'about', 'cricket-portfolio', 'projects', 'certifications', 'contact'];
-  const scrollPosition = scrollY + 100;
-  
-  for (const section of sections) {
-    const element = document.getElementById(section);
-    if (element) {
-      const { offsetTop, offsetHeight } = element;
-      if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-        if (currentSection !== section) {
-          currentSection = section;
-          updateActiveNav();
-        }
-        break;
-      }
-    }
-  }
+  // IntersectionObserver handles active nav section - no longer needed here
 }
 
 // Toggle mobile menu
@@ -606,15 +626,30 @@ function init() {
   // Initialize certificates
   initCertificates();
   
-  // Navigation
-  document.getElementById('logo-btn').addEventListener('click', () => scrollToSection('home'));
-  document.getElementById('explore-btn').addEventListener('click', () => scrollToSection('about'));
-  
   // Nav links
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  
+  // Set up IntersectionObserver for active nav section
+  updateActiveNavWithObserver();
+  
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       const section = link.getAttribute('data-section');
       scrollToSection(section);
+      // Update active state immediately on click
+      navLinks.forEach(l => {
+        l.classList.remove('text-cyan-400');
+        l.classList.add('text-gray-300', 'hover:text-white');
+        l.removeAttribute('aria-current');
+      });
+      mobileNavLinks.forEach(l => {
+        l.classList.remove('text-cyan-400');
+        l.classList.add('text-gray-300', 'hover:text-white');
+        l.removeAttribute('aria-current');
+      });
+      link.classList.add('text-cyan-400');
+      link.setAttribute('aria-current', 'page');
     });
   });
   
@@ -622,8 +657,26 @@ function init() {
     link.addEventListener('click', () => {
       const section = link.getAttribute('data-section');
       scrollToSection(section);
+      // Update active state immediately on click
+      navLinks.forEach(l => {
+        l.classList.remove('text-cyan-400');
+        l.classList.add('text-gray-300', 'hover:text-white');
+        l.removeAttribute('aria-current');
+      });
+      mobileNavLinks.forEach(l => {
+        l.classList.remove('text-cyan-400');
+        l.classList.add('text-gray-300', 'hover:text-white');
+        l.removeAttribute('aria-current');
+      });
+      link.classList.add('text-cyan-400');
+      link.setAttribute('aria-current', 'page');
     });
   });
+  document.getElementById('explore-btn').addEventListener('click', () => scrollToSection('about'));
+  
+  // Nav links
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
   
   // Mobile menu
   menuToggle.addEventListener('click', toggleMobileMenu);
@@ -668,22 +721,78 @@ function init() {
   handleScroll(); // Initial call
 }
 
-// Read More toggle for long descriptions (Issue #11)
+// Read More toggle for long descriptions (Issue #11, #15)
 function initReadMoreToggles() {
-  document.querySelectorAll('.read-more-btn').forEach(btn => {
+  const readMoreButtons = document.querySelectorAll('.read-more-btn');
+
+  // Group project cards by row (2-column grid)
+  function getRowCards(card) {
+    const section = card.closest('#projects');
+    if (!section) return [card];
+    const allCards = section.querySelectorAll('.grid-md\\:grid-cols-2 > div');
+    const idx = allCards.indexOf(card);
+    if (idx >= 0 && allCards[idx + 1]) {
+      return [card, allCards[idx + 1]];
+    }
+    return [card];
+  }
+
+  // Check if text overflows the clamped area
+  function isTextOverflowing(p) {
+    return p.scrollHeight > p.clientHeight;
+  }
+
+  // Initialize each read more button
+  readMoreButtons.forEach(btn => {
+    const p = btn.previousElementSibling;
+    const card = btn.closest('.glass-card');
+    const rowCards = getRowCards(card);
+
+    const cardOverflowing = isTextOverflowing(p);
+    const neighborOverflowing = rowCards[1] && rowCards[1] !== card &&
+      isTextOverflowing(rowCards[1].previousElementSibling);
+
+    // Determine initial state
+    if (!cardOverflowing) {
+      // Text fits - hide read more button
+      btn.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.dataset.expanded = 'false';
+      p.classList.add('line-clamp-3');
+    } else if (neighborOverflowing) {
+      // Neighbor is taller - show full text, no toggle
+      btn.style.display = 'none';
+      p.classList.remove('line-clamp-3');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = 'Read less';
+      btn.dataset.expanded = 'true';
+    } else {
+      // Card has overflow and should show "Read more" toggle
+      btn.style.display = 'inline-block';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.dataset.expanded = 'false';
+      p.classList.add('line-clamp-3');
+    }
+  });
+
+  // Handle button clicks
+  readMoreButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const p = btn.previousElementSibling;
       const isExpanded = btn.dataset.expanded === 'true';
+
       if (isExpanded) {
         // Collapse: add line-clamp
         p.classList.add('line-clamp-3');
         btn.textContent = 'Read more';
         btn.dataset.expanded = 'false';
+        btn.setAttribute('aria-expanded', 'false');
       } else {
         // Expand: remove line-clamp, show full text
         p.classList.remove('line-clamp-3');
         btn.textContent = 'Read less';
         btn.dataset.expanded = 'true';
+        btn.setAttribute('aria-expanded', 'true');
       }
     });
   });
