@@ -217,6 +217,7 @@ let selectedCertificate = null;
 
 // Certificate modal elements
 const certificateModal = document.getElementById('certificate-modal');
+const certificatesGrid = document.getElementById('certificates-grid');
 const contactForm = document.getElementById('contact-form');
 const toast = document.getElementById('toast');
 const srhProjectModal = document.getElementById('srh-project-modal');
@@ -667,11 +668,12 @@ function initReadMoreToggles() {
       const p = btn.previousElementSibling;
       const isExpanded = btn.dataset.expanded === 'true';
       if (isExpanded) {
+        // Collapse: add line-clamp
         p.classList.add('line-clamp-3');
-        p.textContent = p.dataset.fullText.substring(0, p.dataset.fullText.length);
         btn.textContent = 'Read more';
         btn.dataset.expanded = 'false';
       } else {
+        // Expand: remove line-clamp, show full text
         p.classList.remove('line-clamp-3');
         btn.textContent = 'Read less';
         btn.dataset.expanded = 'true';
