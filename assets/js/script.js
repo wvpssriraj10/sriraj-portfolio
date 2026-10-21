@@ -268,8 +268,11 @@ function initCertificates() {
       certShowMoreBtn.setAttribute('aria-expanded', certShowMore);
       renderCertificates();
     });
+  } else {
+    console.warn('cert-show-more-btn not found in DOM');
   }
 
+  // Initial render
   renderCertificates();
 }
 
