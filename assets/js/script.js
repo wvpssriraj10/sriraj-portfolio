@@ -217,6 +217,7 @@ let selectedCertificate = null;
 
 // Certificate modal elements
 const certificateModal = document.getElementById('certificate-modal');
+const certificatesGrid = document.getElementById('certificates-grid');
 const contactForm = document.getElementById('contact-form');
 const toast = document.getElementById('toast');
 const srhProjectModal = document.getElementById('srh-project-modal');
