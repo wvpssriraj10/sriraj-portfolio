@@ -7,6 +7,43 @@
 :root {
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
+
+  /* Typography Scale (Issue #3) */
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.25rem;   /* 20px */
+  --text-xl: 1.5rem;    /* 24px */
+  --text-2xl: 2rem;     /* 32px */
+
+  /* Spacing Scale (Issue #14) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+
+  /* Button shared properties (Issue #1) */
+  --btn-padding-x: 1.5rem;  /* 24px */
+  --btn-padding-y: 0.75rem; /* 12px */
+  --btn-radius: 0.5rem;     /* 8px */
+  --btn-font-size: var(--text-sm);
+  --btn-font-weight: 600;
+  --btn-transition: all 0.2s ease-in-out;
+  --btn-min-height: 3rem;   /* 48px */
+
+  /* Colors */
+  --color-primary: #06b6d4;      /* cyan-500 */
+  --color-primary-hover: #0891b2; /* cyan-600 */
+  --color-primary-active: #0e7490; /* cyan-700 */
+  --color-secondary: #f97316;    /* orange-500 */
+  --color-secondary-hover: #ea580c; /* orange-600 */
+  --color-ghost-bg: transparent;
+  --color-ghost-hover: rgba(255, 255, 255, 0.08);
+  --color-ghost-text: #e5e7eb;   /* gray-200 */
+  --color-ghost-border: #374151; /* gray-700 */
 }
 
 /* Custom animations */
@@ -30,6 +67,13 @@
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -123,6 +167,156 @@ body {
 
 .animate-slow-jump {
   animation: slow-jump 2s ease-in-out infinite;
+}
+
+/* ===== SHARED BUTTON COMPONENTS (Issue #1) ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  font-family: var(--font-body);
+  border-radius: var(--btn-radius);
+  min-height: var(--btn-min-height);
+  transition: var(--btn-transition);
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (hover: none) {
+  .btn:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+/* Primary: Solid cyan for main CTAs */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-active);
+  border-color: var(--color-primary-active);
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-primary);
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary: Solid orange for "View Project" actions */
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  background-color: #c2410c; /* orange-700 */
+  border-color: #c2410c;
+  transform: translateY(0);
+}
+
+/* Ghost: Transparent with border for supplemental links */
+.btn-ghost {
+  background-color: var(--color-ghost-bg);
+  color: var(--color-ghost-text);
+  border-color: var(--color-ghost-border);
+  box-shadow: none;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-ghost-hover);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-ghost:active {
+  background-color: rgba(6, 182, 212, 0.1);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Button size modifiers */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-xs);
+  min-height: 2.5rem; /* 40px */
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: var(--text-base);
+  min-height: 3.5rem; /* 56px */
+}
+
+/* Full width utility */
+.btn-block {
+  width: 100%;
+}
+
+/* Auto width utility (for inline buttons that shouldn't stretch) */
+.btn-auto {
+  width: auto;
+}
+
+@media (min-width: 640px) {
+  .sm\:btn-block {
+    width: 100%;
+  }
+  .sm\:btn-auto {
+    width: auto;
+  }
+}
+
+/* Issue #16: Odd card in 2-col grid spans both columns */
+@media (min-width: 768px) {
+  .grid-cols-2-odd-span > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Certificate grid responsive columns */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 /* Custom scrollbar */
