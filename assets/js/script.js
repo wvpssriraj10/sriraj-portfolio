@@ -268,8 +268,11 @@ function initCertificates() {
       certShowMoreBtn.setAttribute('aria-expanded', certShowMore);
       renderCertificates();
     });
+  } else {
+    console.warn('cert-show-more-btn not found in DOM');
   }
 
+  // Initial render
   renderCertificates();
 }
 
@@ -646,6 +649,10 @@ function init() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !lightboxModal.classList.contains('hidden')) {
       closeLightbox();
+    }
+    // Also close certificate modal on Escape
+    if (e.key === 'Escape' && !certificateModal.classList.contains('hidden')) {
+      closeCertificateModal();
     }
   });
   
