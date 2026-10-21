@@ -200,53 +200,53 @@ body {
   }
 }
 
-/* Primary: Solid cyan for main CTAs */
+/* Primary: Solid orange for main CTAs */
 .btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
-}
-
-.btn-primary:hover {
-  background-color: var(--color-primary-hover);
-  border-color: var(--color-primary-hover);
-  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
-  transform: translateY(-1px);
-}
-
-.btn-primary:active {
-  background-color: var(--color-primary-active);
-  border-color: var(--color-primary-active);
-  transform: translateY(0);
-}
-
-.btn-primary:disabled {
-  background-color: var(--color-primary);
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-/* Secondary: Solid orange for "View Project" actions */
-.btn-secondary {
   background-color: var(--color-secondary);
   color: white;
   border-color: var(--color-secondary);
   box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
 }
 
-.btn-secondary:hover {
+.btn-primary:hover {
   background-color: var(--color-secondary-hover);
   border-color: var(--color-secondary-hover);
   box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
   transform: translateY(-1px);
 }
 
-.btn-secondary:active {
+.btn-primary:active {
   background-color: #c2410c; /* orange-700 */
   border-color: #c2410c;
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary: Solid cyan for secondary actions */
+.btn-secondary {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  background-color: var(--color-primary-active);
+  border-color: var(--color-primary-active);
   transform: translateY(0);
 }
 
@@ -302,16 +302,6 @@ body {
   }
 }
 
-/* Issue #16: Odd card in 2-col grid spans both columns */
-@media (min-width: 768px) {
-  .grid-cols-2-odd-span > :last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    max-width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 /* Certificate grid responsive columns */
 @media (min-width: 1024px) {
   .lg\:grid-cols-4 {
@@ -350,6 +340,17 @@ button:focus:not(:focus-visible),
 input:focus:not(:focus-visible),
 textarea:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Contact form inputs - Issue #16 */
+#contact-form input,
+#contact-form textarea {
+  @apply w-full min-h-[48px] px-4 py-3 bg-white/5 border-2 border-cyan-500/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-2 transition-all text-base;
+}
+
+/* Placeholder contrast fix */
+#contact-form ::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Touch feedback for mobile */
