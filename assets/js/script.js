@@ -223,6 +223,8 @@ const toast = document.getElementById('toast');
 const srhProjectModal = document.getElementById('srh-project-modal');
 const mainContent = document.querySelector('main');
 const certTabsContainer = document.getElementById('cert-tabs');
+const navLinks = document.querySelectorAll('.nav-link');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
 // Lightbox modal elements (Issue #20)
 const lightboxModal = document.getElementById('lightbox-modal');
@@ -604,9 +606,6 @@ function init() {
   initCertificates();
   
   // Nav links
-  const navLinks = document.querySelectorAll('.nav-link');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  
   // Set up IntersectionObserver for active nav section
   updateActiveNavWithObserver();
   
@@ -651,15 +650,8 @@ function init() {
   });
   document.getElementById('explore-btn').addEventListener('click', () => scrollToSection('about'));
   
-  // Nav links
-  const navLinks = document.querySelectorAll('.nav-link');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  
   // Mobile menu
   menuToggle.addEventListener('click', toggleMobileMenu);
-  
-  // Initialize certificates (tabs + grid)
-  initCertificates();
   
   // Contact form
   contactForm.addEventListener('submit', handleContactSubmit);
