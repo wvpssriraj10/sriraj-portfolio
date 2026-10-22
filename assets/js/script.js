@@ -245,7 +245,6 @@ function initCertificates() {
     certTabsContainer.querySelectorAll('.cert-tab').forEach(btn => {
       btn.addEventListener('click', () => {
         currentCertCategory = btn.dataset.category;
-        certShowMore = false;
         certTabsContainer.querySelectorAll('.cert-tab').forEach(b => {
           b.classList.remove('bg-white/8', 'text-white', 'border-b-2', 'border-white/50');
           b.classList.add('text-gray-400');
@@ -266,9 +265,6 @@ function initCertificates() {
 // Render filtered certificates
 function renderCertificates() {
   let filtered = certificates.filter(c => currentCertCategory === 'All' || c.category === currentCertCategory);
-  if (!certShowMore) {
-    filtered = filtered.slice(0, CERTS_PER_PAGE);
-  }
 
   certificatesGrid.innerHTML = filtered.map(cert => `
     <div class="bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:transform hover:scale-105 group" data-cert-id="${cert.id}">
@@ -695,90 +691,13 @@ function init() {
   // document.getElementById('srh-project-btn').addEventListener('click', showSrhProject);
   document.getElementById('srh-back-btn').addEventListener('click', hideSrhProject);
   
-  // Read More toggles (Issue #11)
-  initReadMoreToggles();
-  
   // Scroll handler
   window.addEventListener('scroll', handleScroll);
   handleScroll(); // Initial call
 }
 
 // Read More toggle for long descriptions (Issue #11, #15)
-function initReadMoreToggles() {
-  const readMoreButtons = document.querySelectorAll('.read-more-btn');
 
-  // Group project cards by row (2-column grid)
-  function getRowCards(card) {
-    const section = card.closest('#projects');
-    if (!section) return [card];
-    const allCards = section.querySelectorAll('.grid-md\\:grid-cols-2 > div');
-    const idx = allCards.indexOf(card);
-    if (idx >= 0 && allCards[idx + 1]) {
-      return [card, allCards[idx + 1]];
-    }
-    return [card];
-  }
-
-  // Check if text overflows the clamped area
-  function isTextOverflowing(p) {
-    return p.scrollHeight > p.clientHeight;
-  }
-
-  // Initialize each read more button
-  readMoreButtons.forEach(btn => {
-    const p = btn.previousElementSibling;
-    const card = btn.closest('.glass-card');
-    const rowCards = getRowCards(card);
-
-    const cardOverflowing = isTextOverflowing(p);
-    const neighborOverflowing = rowCards[1] && rowCards[1] !== card &&
-      isTextOverflowing(rowCards[1].previousElementSibling);
-
-    // Determine initial state
-    if (!cardOverflowing) {
-      // Text fits - hide read more button
-      btn.style.display = 'none';
-      btn.setAttribute('aria-expanded', 'false');
-      btn.dataset.expanded = 'false';
-      p.classList.add('line-clamp-3');
-    } else if (neighborOverflowing) {
-      // Neighbor is taller - show full text, no toggle
-      btn.style.display = 'none';
-      p.classList.remove('line-clamp-3');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.textContent = 'Read less';
-      btn.dataset.expanded = 'true';
-    } else {
-      // Card has overflow and should show "Read more" toggle
-      btn.style.display = 'inline-block';
-      btn.setAttribute('aria-expanded', 'false');
-      btn.dataset.expanded = 'false';
-      p.classList.add('line-clamp-3');
-    }
-  });
-
-  // Handle button clicks
-  readMoreButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const p = btn.previousElementSibling;
-      const isExpanded = btn.dataset.expanded === 'true';
-
-      if (isExpanded) {
-        // Collapse: add line-clamp
-        p.classList.add('line-clamp-3');
-        btn.textContent = 'Read more';
-        btn.dataset.expanded = 'false';
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        // Expand: remove line-clamp, show full text
-        p.classList.remove('line-clamp-3');
-        btn.textContent = 'Read less';
-        btn.dataset.expanded = 'true';
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-}
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
