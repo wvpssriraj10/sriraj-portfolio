@@ -658,6 +658,9 @@ function init() {
   // Mobile menu
   menuToggle.addEventListener('click', toggleMobileMenu);
   
+  // Initialize certificates (tabs + grid)
+  initCertificates();
+  
   // Contact form
   contactForm.addEventListener('submit', handleContactSubmit);
   
