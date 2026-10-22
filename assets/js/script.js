@@ -208,8 +208,8 @@ const certCategories = ['All', 'Cloud', 'Data Science', 'Management/Marketing'];
 
 // State for certificates section
 let currentCertCategory = 'All';
-let certShowMore = false;
-const CERTS_PER_PAGE = 6;
+let certShowMore = true; // Show all by default
+const CERTS_PER_PAGE = 999; // Show all certificates
 
 // Global state
 let currentSection = 'home';
@@ -223,7 +223,6 @@ const toast = document.getElementById('toast');
 const srhProjectModal = document.getElementById('srh-project-modal');
 const mainContent = document.querySelector('main');
 const certTabsContainer = document.getElementById('cert-tabs');
-const certShowMoreBtn = document.getElementById('cert-show-more-btn');
 
 // Lightbox modal elements (Issue #20)
 const lightboxModal = document.getElementById('lightbox-modal');
@@ -258,18 +257,6 @@ function initCertificates() {
         renderCertificates();
       });
     });
-  }
-
-  // Show More button handler
-  if (certShowMoreBtn) {
-    certShowMoreBtn.addEventListener('click', () => {
-      certShowMore = !certShowMore;
-      certShowMoreBtn.textContent = certShowMore ? 'Show Less' : 'Show More';
-      certShowMoreBtn.setAttribute('aria-expanded', certShowMore);
-      renderCertificates();
-    });
-  } else {
-    console.warn('cert-show-more-btn not found in DOM');
   }
 
   // Initial render
@@ -315,11 +302,6 @@ function renderCertificates() {
       openLightbox(img.dataset.lightbox, img.alt);
     });
   });
-
-  // Toggle Show More button visibility
-  const totalFiltered = certificates.filter(c => currentCertCategory === 'All' || c.category === currentCertCategory).length;
-  if (certShowMoreBtn) {
-    certShowMoreBtn.classList.toggle('hidden', totalFiltered <= CERTS_PER_PAGE);
   }
 }
 
