@@ -223,6 +223,8 @@ const toast = document.getElementById('toast');
 const srhProjectModal = document.getElementById('srh-project-modal');
 const mainContent = document.querySelector('main');
 const certTabsContainer = document.getElementById('cert-tabs');
+const navLinks = document.querySelectorAll('.nav-link');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
 // Lightbox modal elements (Issue #20)
 const lightboxModal = document.getElementById('lightbox-modal');
@@ -236,7 +238,7 @@ function initCertificates() {
   if (certTabsContainer) {
     certTabsContainer.innerHTML = certCategories.map((cat, i) => `
       <button class="cert-tab px-4 py-2 text-sm font-medium rounded-full transition-all ${
-        i === 0 ? 'bg-white/8 text-white rounded-full border-b-2 border-white/50' : 'text-gray-400 rounded-full px-4 py-2 text-sm font-medium hover:text-gray-300'
+        i === 0 ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white'
       }" data-category="${cat}" aria-selected="${i === 0}" role="tab">
         ${cat}
       </button>
@@ -246,12 +248,12 @@ function initCertificates() {
       btn.addEventListener('click', () => {
         currentCertCategory = btn.dataset.category;
         certTabsContainer.querySelectorAll('.cert-tab').forEach(b => {
-          b.classList.remove('bg-white/8', 'text-white', 'border-b-2', 'border-white/50');
-          b.classList.add('text-gray-400');
+          b.classList.remove('bg-cyan-500', 'text-white');
+          b.classList.add('bg-slate-800', 'text-gray-300');
           b.setAttribute('aria-selected', 'false');
         });
-        btn.classList.remove('text-gray-400');
-        btn.classList.add('bg-white/8', 'text-white', 'border-b-2', 'border-white/50');
+        btn.classList.remove('bg-slate-800', 'text-gray-300');
+        btn.classList.add('bg-cyan-500', 'text-white');
         btn.setAttribute('aria-selected', 'true');
         renderCertificates();
       });
@@ -604,9 +606,6 @@ function init() {
   initCertificates();
   
   // Nav links
-  const navLinks = document.querySelectorAll('.nav-link');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  
   // Set up IntersectionObserver for active nav section
   updateActiveNavWithObserver();
   
@@ -650,10 +649,6 @@ function init() {
     });
   });
   document.getElementById('explore-btn').addEventListener('click', () => scrollToSection('about'));
-  
-  // Nav links
-  const navLinks = document.querySelectorAll('.nav-link');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
   
   // Mobile menu
   menuToggle.addEventListener('click', toggleMobileMenu);
