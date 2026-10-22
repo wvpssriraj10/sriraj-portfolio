@@ -298,7 +298,6 @@ function renderCertificates() {
       openLightbox(img.dataset.lightbox, img.alt);
     });
   });
-  }
 }
 
 // Open certificate modal
