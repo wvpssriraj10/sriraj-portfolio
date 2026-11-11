@@ -577,9 +577,9 @@ async function handleContactSubmit(e) {
   }
 }
 
-// Handle resume view
+// Handle resume view (handled natively by <a href="/assets/docs/sriraj-resume.pdf" target="_blank">)
 function handleResumeDownload() {
-  window.open('/assets/docs/wvpssriraj resume DA (1).pdf', '_blank');
+  // Handled natively by anchor tag
 }
 
 // Handle certificate download
@@ -659,8 +659,7 @@ function init() {
   // Contact form
   contactForm.addEventListener('submit', handleContactSubmit);
   
-  // Resume download
-  document.getElementById('resume-download-btn').addEventListener('click', handleResumeDownload);
+  // Resume link is handled natively by <a target="_blank"> href
   
   // Certificate modal
   document.getElementById('close-cert-modal').addEventListener('click', closeCertificateModal);
