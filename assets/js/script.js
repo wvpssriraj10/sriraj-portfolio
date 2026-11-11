@@ -186,20 +186,6 @@ const certificates = [
     imageUrl: '/assets/images/Software Engineering Job Simulation Certificate.jpg',
     brief: 'This "Certificate of Completion" from Electronic Arts (EA), issued via Forage on March 2nd, 2025, is for a "Software Engineering Job Simulation." Practical tasks completed include "Write a Feature Proposal," "Create a Game Object Class," "Improve Inventory System," and "Live Bugfix." This simulation offers hands-on experience with core software development practices within the context of game development, covering aspects from design to debugging.',
     linkedinUrl: 'https://www.linkedin.com/posts/sriraj-w-v-p-s_softwareengineering-gamedevelopment-electronicarts-activity-7301895650001006592-Kr84?utm_source=share&utm_medium=member_desktop&rcm=ACoAAER4EaYBIUTdQpMEjPujtlFEccZmOjt2PiU'
-  },
-  {
-    id: 'yuva-intern',
-    title: 'Virtual Data Science Explorer Intern Certificate',
-    issuer: 'Yuva Intern by Henry Harvin',
-    description: 'Virtual internship program focusing on practical Data Science concepts, exploratory data analysis, and professional project development workflows.',
-    category: 'Data Science',
-    date: 'Aug 2026',
-    // TODO: Generate real thumbnail from PDF first page. PDF at: /assets/images/YuvaIntern Internship Certificate.pdf
-    // Add a file like: /assets/images/yuva-intern-thumbnail.jpg (recommended: 400x300px WebP/JPG)
-    // Placeholder: certificate-style SVG matching other thumbnails
-    imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIzNjAiIGhlaWdodD0iMjYwIiByeD0iOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMzc0MTUxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkludGVyLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTExODI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5WaXJ0dWFsIERhdGEgU2NpZW5jZSBFeHBsb3JlciBJbnRlcm48L3RleHQ+PHRleHQgeD0iMjAwIiB5PSIxNDAiIGZvbnQtZmFtaWx5PSJJbnRlciwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzM3NDE1MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+WWV1YSBJbnRlcm4gYnkgSGVucnkgSGFydmluPC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iMTgwIiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM2YjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkF3YXJkZWQgQXVndXN0IDIwMjY8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIyMjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMSIgZmlsbD0iIzA2YjZkNCIvPjwvc3ZnPg==',
-    brief: 'Completed a virtual internship program focusing on practical Data Science concepts, exploratory data analysis, and professional project development workflows. Awarded August 2026.',
-    linkedinUrl: 'https://lnkd.in/p/dmu-6TJe'
   }
 ];
 
@@ -334,6 +320,9 @@ function openCertificateModal(cert) {
   }
   
   certificateModal.classList.remove('hidden');
+  certificateModal.classList.add('flex');
+  certificateModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
 // Lightbox modal functions (Issue #20)
@@ -343,6 +332,7 @@ function openLightbox(imageUrl, altText) {
   lightboxImage.alt = altText;
   lightboxModal.classList.remove('hidden');
   lightboxModal.classList.add('flex');
+  lightboxModal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   lightboxClose.focus();
   trapFocus(lightboxModal);
@@ -351,6 +341,7 @@ function openLightbox(imageUrl, altText) {
 function closeLightbox() {
   lightboxModal.classList.add('hidden');
   lightboxModal.classList.remove('flex');
+  lightboxModal.style.display = 'none';
   lightboxImage.src = '';
   lightboxImage.alt = '';
   document.body.style.overflow = '';
@@ -383,9 +374,18 @@ function trapFocus(element) {
 
 // Close certificate modal
 function closeCertificateModal() {
-  certificateModal.classList.add('hidden');
+  if (certificateModal) {
+    certificateModal.classList.add('hidden');
+    certificateModal.classList.remove('flex');
+    certificateModal.style.display = 'none';
+  }
+  document.body.style.overflow = '';
   selectedCertificate = null;
 }
+
+// Expose globally for inline onclick handlers
+window.closeCertificateModal = closeCertificateModal;
+window.closeLightbox = closeLightbox;
 
 // Show toast notification
 function showToast(message, type) {
@@ -457,8 +457,11 @@ function updateActiveNavWithObserver() {
               // Activate this link
               navLink.classList.add('text-cyan-400');
               navLink.setAttribute('aria-current', 'page');
-              mobileNavLink.classList.add('text-cyan-400');
-              mobileNavLink.setAttribute('aria-current', 'page');
+              const mobileNavLink = document.querySelector(`.mobile-nav-link[data-section="${sectionId}"]`);
+              if (mobileNavLink) {
+                mobileNavLink.classList.add('text-cyan-400');
+                mobileNavLink.setAttribute('aria-current', 'page');
+              }
             }
           }
         });
